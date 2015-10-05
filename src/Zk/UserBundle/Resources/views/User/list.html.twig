@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+
+{% block sf_content %}
+   
+<div class="img-polaroid">
+    
+{% include 'ZkInterfaceBundle:AdminInterface:adminFilter.html.twig' with {
+    'filter_form': filter_form,
+    'colspan': 2,
+    'this_path': path('zk_admin_user_list',{'_reset': 1})
+} %}
+    
+{% include 'ZkInterfaceBundle:AdminInterface:adminList.html.twig' with {
+    'items': items,
+    'results': results,
+} %}
+
+<div>
+    <a href="{{ path('zk_admin_user_new') }}" class="btn btn-success">{{ 'Add'|trans }}</a>
+</div>
+
+</div>
+
+{% endblock sf_content %}

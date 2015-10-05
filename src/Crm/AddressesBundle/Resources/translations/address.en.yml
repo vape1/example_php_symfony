@@ -1,0 +1,46 @@
+abonents: Abonents
+num_dogovor: Agreement's number
+full_name: Full name
+phone: Phone
+balance: Balance
+descriptions: Descriptions
+promocode: Promocode
+notif1day: Alert for 1 day
+notif5day: Alert for 5 days
+diller: Diller
+specialOfferGroup: Group offers to sell
+paymentSystems: Payment Systems
+login: Login
+diller_type: Diller
+
+tabs:
+    general: General info
+    address: Address
+    finance: Financical statistic
+    calls: Calls
+    troubleshooting: Troubleshooting
+
+call:
+    email: Email
+    full_name: Full name
+    category: Category
+    method: Method
+    responce: Response
+    date_call: Date call
+    date_open: Date open
+    date_close: Date close
+    is_close: Is close
+    edit: edit
+    call: Calls
+    respUser: Responsible Manager
+    subcategory: Category
+    contacts: Contacts
+    quest: Quest
+    answer: Answer
+    comment: Comment
+    log: Log
+    isClose: isClose
+    
+abonent:
+    abonent: Abonents
+    card: Abonent's card

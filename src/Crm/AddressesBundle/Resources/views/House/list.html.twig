@@ -1,0 +1,26 @@
+{% extends "::base.html.twig" %}
+{% block title %}
+    {% trans from "address" %}title_addresses{% endtrans %} - {% trans from "address" %}h_name{% endtrans %}
+{% endblock %}
+{% block sf_content %}
+
+{% include 'ZkInterfaceBundle:AdminInterface:adminFilter.html.twig' with {
+    'filter_form': filter_form,
+    'colspan': 2,
+    'this_path': path('crm_addresses_house_list',{'_reset': 1,'view_id': view_id}),
+    'view_id': view_id
+} %}
+   
+{% include 'ZkInterfaceBundle:AdminInterface:adminList.html.twig' with {
+    'items': items,
+    'results': results,
+    'style': 'mini'
+} %}
+<div class="row">
+    <div class="span5">
+	<a href="{{ path('crm_addresses_house_new') }}" class="btn btn-success">
+            {% trans from "address" %}add{% endtrans %}
+        </a>
+    </div> 
+</div>
+{% endblock %}

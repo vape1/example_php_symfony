@@ -1,0 +1,300 @@
+parameters:
+    type_street:
+        ru:
+            ул.:          ул.
+            просп.:       просп.
+            пл.:          пл.
+            бульв.:       бульв.
+            пер.:         пер.
+            шоссе:        шоссе
+            набер.:       набер.
+        ua:
+            вул.:         вул.
+            просп.:       просп.
+            пл.:          пл.
+            бульв.:       бульв.
+            пров.:        пров.
+            шоссе:        шоссе
+            набер.:       набер.
+      
+    type_view:
+        house: Будинок
+        parad: Під'їзд
+        rack: Ящик
+        switch_device: Свіч
+        flat: Квартира
+        
+    addresses_view:
+        parad:
+            list:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+                - p_faza
+                - p_eprasysName
+            filter:
+                - c_nameUa
+                - s_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - p_eprasysName
+            all:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - br_nameUa
+                - s_nameUa
+                - s_nameRu
+                - h_eprasysName
+                - h_name
+                - p_name
+                - p_accessParad
+                - p_commentAccessParad
+                - p_dateConn
+                - p_addressKey
+                - p_eprasysName
+                - p_faza
+                - p_prohodParad
+                - p_bilinkStoyak
+                - p_semafor
+                - p_conditionParad
+                
+        house:
+            list:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+            filter:
+                - c_nameUa
+                - s_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+            all:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - br_nameUa
+                - s_nameUa
+                - s_nameRu
+                - h_eprasysName
+                - h_name
+                
+        street:
+            list:
+                - c_nameUa
+                - s_nameUa
+            filter:
+                - c_nameUa
+                - s_nameUa
+            all:
+                - c_nameUa
+                - s_nameUa
+                - s_nameRu
+            
+        rack:
+            list:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+                - rk_keyNumber
+                - rk_eprasysName
+                - p_eprasysName
+                
+               
+            filter:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+                - p_eprasysName
+                - rk_keyNumber
+                - rk_eprasysName
+                
+                
+            all:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - br_nameUa
+                - s_nameUa
+                - s_nameRu
+                - h_eprasysName
+                - h_name
+                - p_name
+                - p_accessParad
+                - p_commentAccessParad
+                - p_eprasysName
+                - p_dateConn
+                - p_addressKey
+                - p_faza
+                - p_prohodParad
+                - p_bilinkStoyak
+                - p_semafor
+                - p_conditionParad
+                - rk_keyNumber
+                - rk_eprasysName
+                - rk_placeInstall
+                - rk_dateInstall
+                
+        switch_device:
+            list:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+                - rk_keyNumber
+                - rk_eprasysName
+                - p_eprasysName
+                - sd_ringNum
+                - sd_eprasysName
+            filter:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+                - rk_keyNumber
+                - rk_eprasysName
+                - p_eprasysName
+                - sd_ringNum
+                - sd_eprasysName
+            all:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - br_nameUa
+                - s_nameUa
+                - s_nameRu
+                - h_eprasysName
+                - h_name
+                - p_name
+                - p_accessParad
+                - p_commentAccessParad
+                - p_eprasysName
+                - p_planDateConn
+                - p_addressKey
+                - p_faza
+                - p_prohodParad
+                - p_bilinkStoyak
+                - p_semafor
+                - p_conditionParad
+                - rk_keyNumber
+                - rk_eprasysName
+                - rk_placeInstall
+                - rk_dateInstall
+                - sd_eprasysName
+                - sd_ringNum
+                - sd_dateInstall
+                - sd_switchType
+                - sd_installer
+                - sd_onControl
+                - sd_macAddress
+                - sd_serialNum
+                
+        flat:
+            list:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+                - p_faza
+                - p_eprasysName
+                - f_name
+            filter:
+                - c_nameUa
+                - s_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - p_eprasysName
+                - f_name
+            all:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - br_nameUa
+                - s_nameUa
+                - s_nameRu
+                - h_eprasysName
+                - h_name
+                - p_name
+                - p_accessParad
+                - p_commentAccessParad
+                - p_planDateConn
+                - p_addressKey
+                - p_commentDateConn
+                - p_eprasysName
+                - p_faza
+                - p_prohodParad
+                - p_bilinkStoyak
+                - p_semafor
+                - p_conditionParad
+                - f_name
+                - f_rival
+                - f_status
+                - f_statusDescr
+                - f_flatDescr
+                
+        brand:
+            list:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - s_nameUa
+                - h_name
+                - p_eprasysName
+                - brd_installer
+                - brd_prom_door_parad
+                - brd_prom_lift_door
+                - brd_prom_shield
+                - brd_descr
+                - brd_dateInstall
+            filter:
+                - c_nameUa
+                - s_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - h_eprasysName
+                - p_eprasysName
+                - brd_installer
+            all:
+                - c_nameUa
+                - r_nameUa
+                - sb_nameUa
+                - br_nameUa
+                - s_nameUa
+                - s_nameRu
+                - h_eprasysName
+                - h_name
+                - p_name
+                - p_accessParad
+                - p_commentAccessParad
+                - p_planDateConn
+                - p_addressKey
+                - p_commentDateConn
+                - p_eprasysName
+                - p_faza
+                - p_prohodParad
+                - p_bilinkStoyak
+                - p_semafor
+                - p_conditionParad
+                - brd_installer

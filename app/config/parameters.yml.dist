@@ -1,0 +1,15 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host: 213.111.126.100
+    database_port: null
+    database_name: bilink5
+    database_user: bilink5
+    database_password: bilink5
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt

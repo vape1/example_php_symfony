@@ -1,0 +1,123 @@
+# Group
+group:
+    edit:
+        submit: Обновить группу
+    show:
+        name: Название группы
+    new:
+        submit: Создать группу
+    flash:
+        updated: Группа обновлена
+        created: Группа создана
+        deleted: Группа удалена
+
+# Security
+"Bad credentials": Неправильное имя пользователя или пароль
+
+security:
+    legend: Авторизуйтесь будь-ласка
+    username: Логін
+    password: Пароль:
+    remember_me: Запомнить меня
+    submit: Увійти
+
+# Profile
+profile:
+    show:
+        username: Имя пользователя (логин)
+        email: Электронная почта
+        name: Имя
+    edit:
+        submit: Обновить
+    flash:
+        updated: Профиль пользователя обновлен
+
+# Password change
+change_password:
+    submit: Изменить пароль
+    flash:
+        success: Пароль изменен
+
+# Registration
+registration:
+    check_email: Письмо отправлено на адрес %email%. В нём содержится ссылка, по которой вы можете подтвердить свою регистрацию.
+    confirmed: Поздравляем %username%, ваш аккаунт подтвержден.
+    back: Вернуться на предыдущую страницу.
+    submit: Регистрация
+    flash:
+        user_created: Пользователь успешно создан
+    email:
+        subject: Добро пожаловать %username%!
+        message: |
+            Приветствуем %username%!
+
+            Для подтверждения вашей регистрации, пройдите по ссылке %confirmationUrl%
+
+            С наилучшими пожеланиями,
+            команда сайта.
+
+# Password resetting
+resetting:
+    username: "Логин или e-mail:"
+    password_already_requested: Пароль для данного пользователя уже запрашивался за последние 24 часа.
+    check_email: Письмо на адрес %email% уже отправлено. Оно содержит ссылку, при переходе по которой ваш пароль будет сброшен.
+    request:
+        invalid_username: Пользователь "%username%" не существует.
+        username: "Имя пользователя (логин):"
+        submit: Сбросить пароль
+    reset:
+        submit: Изменить пароль
+    flash:
+        success: Пароль успешно сброшен
+    subject: Скинути пароль
+    message: |
+            Приветствуем %username%!
+
+            Для сброса пароля - пожалуйста пройдите по ссылке %confirmationUrl%
+
+            С наилучшими пожеланиями,
+            команда сайта.
+
+# Global strings
+layout:
+    logout: Выход
+    login: Вход
+    register: Регистрация
+    logged_in_as: Вы вошли как %username%
+
+# Form field labels
+form:
+    profile: Профиль
+    last_login: Последний вход
+    group_name: "Название группы:"
+    username: "Логін:"
+    name: "Имя:"
+    email: "Электронная почта:"
+    phone: "Телефон:"
+    timezone: "Часовой пояс:"
+    current_password: "Текущий пароль:"
+    password: "Пароль:"
+    password_confirmation: "Подтвердите пароль:"
+    new_password: "Новый пароль:"
+    new_password_confirmation: "Подтвердите пароль:"
+    sex_str: "{0} | {1} Мужской| {2} Женский"
+    sex:
+        label: Стать
+        male: Мужской
+        female: Женский
+    change: Изменить
+    update: Обновить
+    enabled: УЗ активна
+    created_at: Створено
+    user: Користувач
+    locked: Locked
+    descr: Опис
+    userRoles: Права
+    userGroups: Групи
+    userViews: Вид
+    new_user: Новый пользователь
+    general_data: Загальны дані
+    
+parad: Під'їзд
+house: Будинок
+rack: Ящик

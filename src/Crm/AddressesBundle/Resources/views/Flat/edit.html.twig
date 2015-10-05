@@ -1,0 +1,131 @@
+{% extends "::base.html.twig" %}
+{% block title %}
+    {% trans from "address" %}title_addresses{% endtrans %} - {% trans from "address" %}f_number{% endtrans %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+	$(function() {
+        $( ".accordion" ).accordion({ active: false, collapsible: true });
+    });
+    </script>
+{% endblock %}
+
+{% block sf_content %}
+    
+    
+<div class="row zk-form">
+    <div class="spanMain">
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+	
+	{% if  form.parad is defined %}
+	<div class="row">
+	    <div class="span3">
+		<label>{% trans from "address" %}p_eprasysName{% endtrans %}</label>
+		<span class="label label-info lable-vd">
+		    {{ flat.eprasysNameParad}}
+		</span>
+	    </div>
+	    {% if flat.id %}
+	    <div class="span2">{{ form_row(form.parad) }}</div>
+	    <div class="span2">{{ form_row(form.floor) }}</div>
+	    <div class="span2">
+		<label>{% trans from "address" %}f_number{% endtrans %}</label>
+		<span class="label label-info lable-vd">
+		    {{ flat.name }}
+		</span>
+	    </div>
+	    {% else %}
+            <div class="span5">{{ form_row(form.name) }}</div>
+	    <div  class="span3" style="padding-top: 25px">
+		<span class="label label-important lable-vd">В форматі 1-10,14,15-20,20а, 21/3</span>
+	    </div>
+	    {% endif %}
+	</div>
+	{% endif %}
+        <hr>
+	{% if flat.id %}
+	    {% if  form.status is defined %}
+	    <div class="row ">
+		<div class="span3">{{ form_row(form.status) }}</div>
+	    </div>
+	    <div class="row ">
+		<div class="span3">{{ form_row(form.statusDescr) }}</div>
+	    </div>
+	    <div class="row ">
+		<div class="span3">{{ form_row(form.rival) }}</div>
+	    </div>
+	    <div class="row ">
+		<div class="span3">{{ form_row(form.flatDescr) }}</div>
+	    </div>
+	    {% endif %}
+	    <hr>
+	    <div class="row ">
+		<div class="span11">
+		<div class="accordion span11">
+	        <h7>{% trans with {} from 'address' %}f_phones{% endtrans %}</h7>
+	        <div>
+		    <div class="span1"><a href="{{ path('crm_addresses_flat_phone_new', {'flat_id': flat.id}) }}" class=" btn btn-info btn-mini">{% trans from "address" %}add{% endtrans %}</a></div>
+		    <div class="table-vd">
+		      <table class="table table-striped table-condensed">
+			{% if flat.flatPhones.count %}
+			    <tr>
+				<th></th>
+				<th>Телефон</th>
+				<th>Активний</th>
+				<th>Примітки</th>
+				<th></th>
+			    </tr>
+			    {% for i,phone in flat.flatPhones %}
+			    <tr>
+				<td>{{ phone.name }}</td>
+				<td>{{ phone.number }}</td>
+				<td>{{ phone.status }}</td>
+				<td>{{ phone.descr }}</td>
+				<td>
+				    <a href="{{ path('crm_addresses_flat_phone_edit',{'id':flat.id}) }}">Edit</a>
+				    <br>
+				    <a href="{{ path('crm_addresses_flat_phone_delete',{'id':flat.id})}}" onclick="return confirm('Ви дійсно бажаєте видалити телефон?')">Delete</a>
+				</td>
+			    </tr>
+			    {% endfor %}
+			{% else %}
+			<tr>
+			    <th style="text-align:center">Телефони</th>
+			</tr>
+			{% endif %}
+		      </table>
+		    </div>
+	        </div>
+		</div>
+		</div>
+	    </div>
+	    <hr>
+	{% endif %}	
+	
+	<div class="row">
+	    <div class="span5">
+		<a href="{{ path('crm_addresses_parad_edit',{'id':flat.parad.id}) }}" class="btn btn-success">{% trans from "address" %}back{% endtrans %}</a>
+	    </div>
+            <div class="span3">
+		<button class="btn btn-primary" type="submit">{% trans from "address" %}save{% endtrans %}</button>
+	    </div>
+	    {% if flat.id %}
+		<div class="span1">
+		    <a href="{{ path('crm_addresses_flat_delete', {'id': flat.id}) }}" class="btn btn-danger">{% trans from "address" %}dell{% endtrans %}</a>
+		</div>
+	    {% endif %}
+        </div>
+	<hr>
+        <div style="display:none;">{{ form_rest(form) }}</div>
+	
+	{{ form_end(form) }}
+    
+    </div>
+    
+{% endblock sf_content %}

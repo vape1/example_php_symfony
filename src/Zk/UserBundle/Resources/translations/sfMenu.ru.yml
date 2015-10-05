@@ -1,0 +1,25 @@
+main:
+    home: Главная
+    profile: Профиль
+    change_password: Сменить пароль
+    login: Вход
+    logout: Выход
+    user_list: Список пользователей
+    role_list: Список прав
+    group_list: Список групп
+
+content:
+    admin_content: Контент
+    slider: Список слайдеров
+    banner: Список баннеров
+    content_group: Группы контента
+    content: Список контента
+    admin_services: Услуги
+    admin_addon_services: Доп.Услуги
+    wiki: База знаний
+    descr: Описание
+    
+abonent:
+    abonents: Абоненты
+    calls: Обращения
+

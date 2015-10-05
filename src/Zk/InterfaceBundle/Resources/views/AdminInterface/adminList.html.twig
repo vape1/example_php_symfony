@@ -1,0 +1,102 @@
+<link href="{{ asset('bundles/zkinterface/css/admin_interface.css') }}" rel="stylesheet"/>
+{% if style is defined %}
+    {% if 'mini' == style %}
+        <style>.sf_table{font-size:12px;}.sf_table th,.sf_table td{padding:2px 5px;}</style>
+    {% endif %}
+{% endif %}
+<table class="sf_table table table-condensed">
+<thead>
+<tr>
+{% for item in items %}
+    {% if item.sort %}
+        <th{% if results.pagination.isSorted(item.aliasAndName) %} class="sorted"{% endif %}  {% if item.getOption('style') %} style="{{ item.getOption('style') }}"{% endif %}>
+            {{ knp_pagination_sortable(results.pagination, item.label, item.aliasAndName) }}
+        </th>
+    {% else %}
+        <th class="th_paginator_free">{{ item.label }}</th>
+    {% endif %}
+{% endfor %}
+</tr>
+</thead>
+{% if autosum is defined and autosum|length %}
+<tr class="autosum">
+    {% for item in items %}
+        {% if item.autosum %}
+            <th title="Автосумма"{% if item.getOption('class') %} class="{{ item.getOption('class') }}"{% endif %} {% if item.getOption('style') %} style="{{ item.getOption('style') }}"{% endif %}>
+                <span class="label label-success">
+                    {% if zkNumberFormat is defined %} {#{ [2, '.', ','] }#}
+                        {{ autosum[item.autosum] | number_format(zkNumberFormat[0]|default(0),zkNumberFormat[1]|default(''),zkNumberFormat[2]|default('')) }}
+                    {% elseif zkRound is defined %}
+                        {{ zkRound|format(autosum[item.autosum]) }} {#{ %.2f }#}
+                    {% else %}
+                        {{ autosum[item.autosum] }}
+                    {% endif %}
+                </span>
+            </th>
+        {% else %}
+            <th></th>
+        {% endif %}
+    {% endfor %}
+</tr>
+{% endif %}
+{# table body #}
+{% for result in results.pagination %}
+<tr class="{{ loop.index is odd ? 'odd' : 'even' }}">
+    {% for item in items %}
+        {% set value = item.method ? attribute(result, item.method) : attribute(result, item.name) %}
+       {#{result |print_r}#}
+        {% if item.func == 'dateTimeFormat' %}
+            {% set value = formatDatetime(value, item.getOption('dateTimeFormat') ?: 'Y-m-d H:i:s' ) %}
+        {% endif %}
+        
+        {% if item.filter == 'yes_no' %}
+            {% if item.getOption('revers') %}
+                {% set value = value ? 'No'|trans : 'Yes'|trans %}
+            {% else %}
+                {% set value = value ? 'Yes'|trans : 'No'|trans %}
+            {% endif %}
+        {% endif %}
+        
+        {% if item.getOption('link_id') %}
+            {% set lid = item.getOption('lid') ?: 'id' %}
+            {% set click = item.getOption('click') ?: '' %}
+            
+            {% if item.getOption('parent_id') %}
+                {% set value = '<a style="text-decoration:underline;"
+                ' ~ click ~ ' href="' ~ path(item.getOption('link_id'),
+                { 'id': attribute(result, item.getOption('parent_id') ) }) ~ '">' ~ value ~ '</a>' %}
+            {% else %}
+                {% set value = '<a style="text-decoration:underline;" ' ~ click ~ ' href="' ~ path(item.getOption('link_id'), { 'id': attribute(result, lid) }) ~ '">' ~ value ~ '</a>' %}
+            {% endif %}
+            
+        {% endif %}
+        
+        {% if value and item.getOption('icon_path') %}
+            {% set value = '<img src="' ~ ( value matches '{/http/}' ? value : asset(item.getOption('icon_path') ~ value) ) ~ '" width="' ~ item.getOption('icon_width') ~ '" title="Icon" alt="Icon" />' %}
+        {% endif %}
+        
+        {% if item.getOption('transchoice') %}
+            {% set value = item.getOption('transchoice') | transchoice(value,{},item.getOption('transchoice_d') ) %}
+        {% endif %}
+        
+        {% if item.getOption('addon_options') and addon_options[item.getOption('addon_options')] is defined and isNumeric(value) %}
+            {% set value = addon_options[item.getOption('addon_options')][value] %}
+        {% endif %}
+
+        {% if value and item.getOption('round') %}
+            {% set value =  value | number_format(item.getOption('round'), '.', ',') %}
+        {% endif %}
+        
+        <td{% if item.getOption('class') %} class="{{ item.getOption('class') }}"{% endif %} {% if item.getOption('style') %} style="{{ item.getOption('style') }}"{% endif %}>
+            {{ value | raw }}
+        </td>
+        
+    {% endfor %}
+</tr>
+{% endfor %}
+<tfoot>
+<tr>
+    <th colspan="{{ items | length }}">{{ knp_pagination_render(results.pagination) }}</th>
+</tr>
+</tfoot>
+</table>

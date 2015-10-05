@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+{% block title %}
+    {% trans from "abonent" %}title_abonent{% endtrans %} - {% trans from "abonent" %}aph_name{% endtrans %}
+{% endblock %}
+{% block sf_content %}
+
+{% include 'ZkInterfaceBundle:AdminInterface:adminFilter.html.twig' with {
+    'filter_form': filter_form,
+    'colspan': 2,
+    'this_path': path('abonentph',{'_reset': 1})
+} %}
+   
+{% include 'ZkInterfaceBundle:AdminInterface:adminList.html.twig' with {
+    'items': items,
+    'results': results,
+    'style': 'mini'
+} %}
+{% endblock %}

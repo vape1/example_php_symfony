@@ -1,0 +1,47 @@
+abonentph:
+    pattern:  /
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:index" }
+
+abonentph_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:show" }
+
+abonentph_new:
+    pattern:  /new/{flat_id}
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:new" }
+    options:
+        expose: true
+
+abonentph_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:edit" }
+    options:
+        expose: true
+
+abonentph_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:update" }
+    requirements: { _method: post|put }
+
+abonentph_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:delete" }
+    requirements: { _method: post|delete }
+    
+abonentph_get_house:
+    pattern:  /get_house/{val},{type}
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:getHouse" }
+    options:
+        expose: true
+        
+abonentph_flat_info:
+    pattern:  /{id}/flat_info
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:getFlatInfo" }
+    options:
+        expose: true
+        
+abonentph_appl_update:
+    pattern:  /{id}/{val}/{field}/appl_update
+    defaults: { _controller: "CrmAbonentBundle:AbonentPh:applUpdate" }
+    options:
+        expose: true

@@ -1,0 +1,293 @@
+crm_addresses_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CrmAddressesBundle:Default:index }
+#City   
+crm_addresses_city_list:
+    pattern:  /city/list
+    defaults: { _controller: CrmAddressesBundle:City:index}
+    
+crm_addresses_city_edit:
+    pattern:  /city/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:City:edit }
+    
+crm_addresses_city_new:
+    pattern:  /city/new
+    defaults: { _controller: CrmAddressesBundle:City:new}
+
+crm_addresses_city_delete:
+    pattern:  /city/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:City:delete }
+
+#Region    
+crm_addresses_region_list:
+    pattern:  /region/list
+    defaults: { _controller: CrmAddressesBundle:Region:index}
+    
+crm_addresses_region_edit:
+    pattern:  /region/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Region:edit }
+    
+crm_addresses_region_new:
+    pattern:  /region/new
+    defaults: { _controller: CrmAddressesBundle:Region:new}
+
+crm_addresses_region_delete:
+    pattern:  /region/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Region:delete }
+    
+#SubRegion    
+crm_addresses_sub_region_list:
+    pattern:  /sub_region/list
+    defaults: { _controller: CrmAddressesBundle:SubRegion:index}
+    
+crm_addresses_sub_region_edit:
+    pattern:  /sub_region/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:SubRegion:edit }
+    
+crm_addresses_sub_region_new:
+    pattern:  /sub_region/new
+    defaults: { _controller: CrmAddressesBundle:SubRegion:new}
+
+crm_addresses_sub_region_delete:
+    pattern:  /sub_region/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:SubRegion:delete }
+    
+#BilinkRegion
+crm_addresses_bilink_region_list:
+    pattern:  /bilink_region/list
+    defaults: { _controller: CrmAddressesBundle:BilinkRegion:index}
+    
+crm_addresses_bilink_region_edit:
+    pattern:  /bilink_region/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:BilinkRegion:edit }
+    
+crm_addresses_bilink_region_new:
+    pattern:  /bilink_region/new
+    defaults: { _controller: CrmAddressesBundle:BilinkRegion:new}
+
+crm_addresses_bilink_region_delete:
+    pattern:  /bilink_region/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:BilinkRegion:delete }
+    
+#House
+crm_addresses_get_sub_region:
+    pattern:  /get_sub_region/{val}
+    defaults: { _controller: CrmAddressesBundle:House:subRegions }
+    options:
+        expose: true
+    
+crm_addresses_house_list:
+    pattern:  /house/list/{view_id}
+    defaults: { _controller: CrmAddressesBundle:House:index, view_id:0 }
+    
+crm_addresses_house_edit:
+    pattern:  /house/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:House:edit }
+    
+crm_addresses_house_new:
+    pattern:  /house/new/{id}
+    defaults: { _controller: CrmAddressesBundle:House:new, id:0 }
+    
+crm_addresses_house_delete:
+    pattern:  /house/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:House:delete }
+
+#Street
+crm_addresses_street_list:
+    pattern:  /street/list/{view_id}
+    defaults: { _controller: CrmAddressesBundle:Street:index, view_id:0 }
+    
+crm_addresses_street_edit:
+    pattern:  /street/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Street:edit }
+    
+crm_addresses_street_new:
+    pattern:  /street/new{id}
+    defaults: { _controller: CrmAddressesBundle:Street:new, id:0 }
+
+crm_addresses_street_delete:
+    pattern:  /street/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Street:delete }
+    
+#Parad
+crm_addresses_parad_list:
+    pattern:  /parad/list/{view_id}
+    defaults: { _controller: CrmAddressesBundle:Parad:index, view_id:0 }
+    
+crm_addresses_parad_edit:
+    pattern:  /parad/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Parad:edit }
+    
+crm_addresses_parad_delete:
+    pattern:  /parad/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Parad:delete }
+    
+crm_addresses_parad_new:
+    pattern:  /parad/new/{house_id}
+    defaults: { _controller: CrmAddressesBundle:Parad:new }
+
+#Branding
+crm_addresses_brand_list:
+    pattern:  /brand/list/{type_id}
+    defaults: { _controller: CrmAddressesBundle:Brand:index }
+    
+crm_addresses_brand_new:
+    pattern:  /brand_new/{parad_id}/{id}
+    defaults: { _controller: CrmAddressesBundle:Brand:new}
+    
+crm_addresses_brand_edit:
+    pattern:  /brand/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Brand:edit}
+    
+crm_addresses_brand_delete:
+    pattern:  /brand/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Brand:delete }
+ 
+#ServiceOrg   
+crm_addresses_service_org_list:
+    pattern:  /service_org/list
+    defaults: { _controller: CrmAddressesBundle:ServiceOrg:index }
+    
+crm_addresses_service_org_new:
+    pattern:  /service_org/new
+    defaults: { _controller: CrmAddressesBundle:ServiceOrg:new }
+    
+crm_addresses_service_org_edit:
+    pattern:  /service_org/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:ServiceOrg:edit }
+    
+crm_addresses_service_org_delete:
+    pattern:  /service_org/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:ServiceOrg:delete }
+    
+#ServiceOrgDep
+crm_addresses_service_org_dep_edit:
+    pattern:  /service_org_dep/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:ServiceOrg:editDep }
+    
+crm_addresses_service_org_dep_delete:
+    pattern:  /service_org_dep/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:ServiceOrg:deleteDep }
+
+crm_addresses_service_org_dep_new:
+    pattern:  /service_org_dep/new/{org_id}
+    defaults: { _controller: CrmAddressesBundle:ServiceOrg:newDep }
+    
+#Rack
+crm_addresses_rack_list:
+    pattern:  /rack/list/{view_id}
+    defaults: { _controller: CrmAddressesBundle:Rack:index, view_id:0 }
+    
+crm_addresses_rack_edit:
+    pattern:  /rack/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Rack:edit }
+    
+crm_addresses_rack_delete:
+    pattern:  /rack/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Rack:delete }
+
+crm_addresses_rack_new:
+    pattern:  /rack/new/{parad_id}
+    defaults: { _controller: CrmAddressesBundle:Rack:new }
+    
+#SwitchDevice
+crm_addresses_switch_device_list:
+    pattern:  /switch_device/list/{view_id}
+    defaults: { _controller: CrmAddressesBundle:SwitchDevice:index, view_id:0 }
+    
+crm_addresses_switch_device_edit:
+    pattern:  /switch_device/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:SwitchDevice:edit }
+    
+crm_addresses_switch_device_delete:
+    pattern:  /switch_device/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:SwitchDevice:delete }
+
+crm_addresses_switch_device_new:
+    pattern:  /switch_device/new/{rack_id}
+    defaults: { _controller: CrmAddressesBundle:SwitchDevice:new }
+    
+#SwitchDeviceType
+crm_addresses_switch_device_type_list:
+    pattern:  /switch_device_type/list
+    defaults: { _controller: CrmAddressesBundle:SwitchDeviceType:index}
+    
+crm_addresses_switch_device_type_edit:
+    pattern:  /switch_device_type/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:SwitchDeviceType:edit }
+    
+crm_addresses_switch_device_type_delete:
+    pattern:  /flat_phone/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:SwitchDeviceType:delete }
+
+crm_addresses_switch_device_type_new:
+    pattern:  /switch_device_type/new
+    defaults: { _controller: CrmAddressesBundle:SwitchDeviceType:new }
+    
+#Ring
+crm_addresses_ring_list:
+    pattern:  /ring/list
+    defaults: { _controller: CrmAddressesBundle:Ring:index}
+    
+crm_addresses_ring_edit:
+    pattern:  /ring/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Ring:edit }
+    
+crm_addresses_ring_delete:
+    pattern:  /ring/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Ring:delete }
+
+crm_addresses_ring_new:
+    pattern:  /ring/new
+    defaults: { _controller: CrmAddressesBundle:Ring:new }
+
+#Flat
+crm_addresses_flat_list:
+    pattern:  /flat/list/{view_id}
+    defaults: { _controller: CrmAddressesBundle:Flat:index, view_id:0 }
+    
+crm_addresses_flat_edit:
+    pattern:  /flat/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Flat:edit }
+    
+crm_addresses_flat_delete:
+    pattern:  /flat/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Flat:delete }
+
+crm_addresses_flat_new:
+    pattern:  /flat/new/{parad_id}
+    defaults: { _controller: CrmAddressesBundle:Flat:new }
+    
+#FlatPhone
+crm_addresses_flat_phone_list:
+    pattern:  /flat_phone/list/{view_id}
+    defaults: { _controller: CrmAddressesBundle:Flat:index, view_id:0 }
+    
+crm_addresses_flat_phone_edit:
+    pattern:  /flat_phone/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Flat:edit }
+    
+crm_addresses_flat_phone_delete:
+    pattern:  /flat_phone/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Flat:delete }
+
+crm_addresses_flat_phone_new:
+    pattern:  /flat_phone/new/{flat_id}
+    defaults: { _controller: CrmAddressesBundle:Flat:new }
+    
+#Rival
+crm_addresses_rival_list:
+    pattern:  /rival/list
+    defaults: { _controller: CrmAddressesBundle:Rival:index}
+    
+crm_addresses_rival_edit:
+    pattern:  /rival/{id}/edit
+    defaults: { _controller: CrmAddressesBundle:Rival:edit }
+    
+crm_addresses_rival_delete:
+    pattern:  /rival/{id}/delete
+    defaults: { _controller: CrmAddressesBundle:Rival:delete }
+
+crm_addresses_rival_new:
+    pattern:  /rival/new
+    defaults: { _controller: CrmAddressesBundle:Rival:new }

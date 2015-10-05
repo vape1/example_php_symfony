@@ -1,0 +1,124 @@
+c_nameUa: Місто
+c_nameRu: Місто(rus)
+c_prefixUa: Префікс
+c_prefixRu: Префікс(rus)
+
+r_nameUa: Адм. район(rus)
+r_nameRu: Адм. район
+
+br_nameUa: Район Білінк
+br_nameRu: Район Білінк(rus)
+
+sb_nameUa: Підрайон Білінк
+sb_nameRu: Підрайон Білінк(rus)
+
+s_nameUa: Вулиця
+s_nameRu: Вулиця(rus)
+s_eprasysName: Eprasys вулиці
+s_typeRu: Тип(rus)  
+s_typeUa: Тип
+
+h_name: Будинок
+h_eprasysName: Eprasys будинку
+h_count_parads: К-сть під'їздів
+h_count_flats: К-сть квартир
+h_descr: Примітки
+h_payPort: Плата за порт
+h_houseType: Тип будинку
+h_optikaAir: Оптика каналізація
+h_optikaKan: Оптика повітря
+
+p_name: Під'їзд
+p_accessParad: Доступ до під'їзду
+p_commentAccessParad: Комментрій по доступу
+p_dateConn: Запланована дата підключення
+p_addressKey: Адреса ключа
+p_faza: Фаза
+p_faza2: Ф2+
+p_ableConn: Можливість підключення
+p_prohodParad: Прохід під'їзд
+p_bilinkStoyak: Білінк стояк
+p_semafor: Світлофор
+p_conditionParad: Стан під'їзду
+p_serviceOrg: Обслуговуюча організація
+p_floor: К-сть поверхів
+p_liftQuan: К-сть ліфтів
+p_eprasysName: Eprasys під’зду
+p_count_flats: К-сть квартир
+p_mirrorCount: К-сть зеркал
+p_rack_count: К-сть ящиків
+p_switchQuan: К-сть свічів
+p_table: Табличка
+p_mirrorCountPlanned: Заплановано зеркал
+parads: Під’їзди
+
+
+f_name: Квартири
+f_add: Додати квартири
+f_number: Квартира
+f_floor: Поверх
+f_phones: Телефони
+f_status: Статус
+f_rent: Квартиронаймач
+f_statusDescr: Примітки статус
+f_rival: Конкуренти
+f_flatDescr: Примітки квартира
+
+brd_dateInstall: Дата встановлення
+brd_planned: Запланувати
+brd_worker: Установщик
+brd_add_table: Додати табличку
+brd_add_mirror: Додати дзеркало
+brd_prom_door_parad: Двері під’їзд
+brd_prom_lift_door: Двері ліфт
+brd_prom_shield: Щиток
+brd_descr: Примітки
+brd_add_promo: Додати рекламу
+brd_promo: Реклама
+brd_installer: Установщик
+
+rk_name: Ящик
+rk_keyNumber: Номер ключа
+rk_placeInstall: Місце установки
+rk_dateInstall: Дата установки
+rk_eprasysName: Eprasys ящика
+racks: Ящики
+rk_add: Додати ящик
+
+sd_eprasysName: Eprasys свіча
+sd_name: Свіч
+sd_switchType: Тип
+sd_installer: Установщик
+sd_ringNum: Номер кільця
+sd_sfp: SFP
+sd_onControl: Під контролем
+sd_serialNum: Серійний номер
+sd_macAddress: МАС адрес
+sd_history: Історія
+add_switch: Додати свіч
+sd_dateInstall: дата установки свіча
+
+so_name: Обслуговуюча організація
+
+sod_name: Відділення
+sod_info: Інформація відділення
+sod_keyAddress: Адреса ключа
+    
+uv_list: Налаштування виду таблиці
+uv_filter: Налаштування виду фільтрів
+uv_module: Модуль
+uv_name: Назва
+
+add: Додати
+save: Зберегти
+back: Назад
+dell: Видалити
+
+title_addresses: База Будинків
+
+
+    
+
+
+
+

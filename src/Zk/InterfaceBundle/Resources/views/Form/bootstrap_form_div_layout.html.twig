@@ -1,0 +1,215 @@
+{% extends 'BcBootstrapBundle:Form:form_div_layout.html.twig' %}
+{# Labels #}
+
+{% block form_label %}
+{% spaceless %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if form_type is defined and form_type == 'horizontal' %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ label|trans({}, translation_domain) }}
+        {% if label_attr['sure'] is defined %}
+            <sup style="color:red;">*</sup>
+        {% endif %}
+    </label>
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block text_filter_widget %}
+    {% spaceless %}
+        <ul>
+        {% for child in form %}
+            <li>{{ form_widget(child) }}</li>
+        {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block choice_filter_widget %}
+    {% spaceless %}
+        <ul>
+        {% for child in form %}
+            <li>{{ form_widget(child) }}</li>
+        {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block boolean_filter_widget %}
+    {% spaceless %}
+        <ul>
+        {% for child in form %}
+            <li>{{ form_widget(child) }}</li>
+        {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block entity_filter_widget %}
+    {% spaceless %}
+        <ul>
+        {% for child in form %} 
+            <li>{{ form_widget(child) }}</li>
+        {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block jquery_entity_combobox_widget %}
+    {{ block('choice_widget') }}
+    {% spaceless %}
+    <style>
+	.ui-button { margin-left: -1px; }
+	.ui-button-text { padding: 0 !important; }
+	.ui-autocomplete-input { background: #FFFFFF; margin: 0; }
+        button.ui-button-icon-only { height: 1.4em; width: 1.4em; }
+        button.ui-icon { margin-top: 5px; }
+        .ui-autocomplete{ border: none; }
+        .ui-autocomplete li{  background: #FFFFFF; }
+    </style>
+    <script type="text/javascript">
+      $(function(){
+        $( "#{{ id }}" ).autocomplete();
+      	$( "#{{ id }}" ).combobox();
+     });
+    </script>
+    {% endspaceless %}
+{% endblock %}
+
+{% block date_filter_widget %}
+    {% spaceless %}
+        <ul>
+        {% for child in form %} 
+            <li>{{ form_widget(child) }}</li>
+        {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}
+
+{% block zk_multi_select_widget %}
+    {% spaceless %}
+    <script type="text/javascript">
+      $(function(){
+        $( "#{{ id }}" )
+            .ZkMultiSelectWidget({
+                ZkHeight: {{ ZkHeight }},
+                ZkWidth:  {{ ZkWidth }},
+                ZkSearch: {{ ZkSearch }},
+                ZkRange:  {{ ZkRange }},
+	        ZkDescr:  {{ ZkDescr|raw }},
+	        ZkOptionsDisabled: {{ ZkOptionsDisabled|raw }}
+            });
+     });
+    </script>
+    {{ block('choice_widget_collapsed') }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_row %}
+{% spaceless %}
+    {% if form_type is defined and form_type == 'inline' %}
+        {{ block('inline_row') }}
+    {% elseif form_type is defined and form_type == 'horizontal' %}
+        {{ block('horizontal_row') }}
+    {% else %}
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block zk_date_time_bootstramp_widget %}
+    {% spaceless %}
+    {% set class_ = '' %}
+    {% if 'ZkTime' == ZkWidget %}
+    <script type="text/javascript">
+        $(function(){
+	    $( "#{{ id }}" ).timepicker({
+                defaultTime: {{ ZkTime['defaultTime'] }},
+                disableFocus: {{ ZkTime['disableFocus'] }},
+                isOpen: {{ ZkTime['isOpen'] }},
+                minuteStep: {{ ZkTime['minuteStep'] }},
+                modalBackdrop: {{ ZkTime['modalBackdrop'] }},
+                secondStep: {{ ZkTime['secondStep'] }},
+                showSeconds: {{ ZkTime['showSeconds'] }},
+                showInputs: {{ ZkTime['showInputs'] }},
+                showMeridian: {{ ZkTime['showMeridian'] }},
+                template: '{{ ZkTime['template'] }}',
+                appendWidgetTo: '{{ ZkTime['appendWidgetTo'] }}'
+	    });
+        });
+    </script>
+    
+    {% elseif 'ZkDate' == ZkWidget %}
+    {% set class_ = ' date datepicker ' ~ id %}
+    <script type="text/javascript">
+        $(function(){
+	    $( ".{{ id }}" ).datepicker({
+		autoclose:     {{ ZkDate['autoclose'] }},
+		beforeShowDay: {{ ZkDate['beforeShowDay'] }},
+		calendarWeeks: {{ ZkDate['calendarWeeks'] }},
+		clearBtn:      {{ ZkDate['clearBtn'] }},
+		daysOfWeekDisabled: {{ ZkDate['daysOfWeekDisabled'] }},
+		endDate:       {{ ZkDate['endDate'] }},
+		forceParse:    {{ ZkDate['forceParse'] }},
+		format:       '{{ ZkDate['format'] }}',
+		keyboardNavigation: {{ ZkDate['keyboardNavigation'] }},
+		minViewMode:   {{ ZkDate['minViewMode'] }},
+		rtl:           {{ ZkDate['rtl'] }},
+		startDate:     {{ ZkDate['startDate'] }},
+		startView:     {{ ZkDate['startView'] }},
+		todayBtn:      {{ ZkDate['todayBtn'] }},
+		todayHighlight: {{ ZkDate['todayHighlight'] }},
+		weekStart:     {{ ZkDate['weekStart'] }},
+		language:     '{{ app.request.locale }}'
+	    });
+        });
+    </script>
+    {% endif %}
+    <div class="input-append{{ class_ }}">
+        {{ block('form_widget_simple') }}
+        {% if ZkAppend|length %}
+        <span class="add-on">
+	    {{ ZkAppend[0] ? ZkAppend[0] : '' }}
+	    {% if ZkAppend[1] is defined and ZkAppend[1] %}
+	        <i class="{{ ZkAppend[1] }}"></i>
+	    {% endif %}
+        </span>
+        {% endif %}
+    </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length == 1 %}
+    <div class="error">{{
+        errors[0].messagePluralization is null
+            ? errors[0].messageTemplate|trans(errors[0].messageParameters, 'validators')
+            : errors[0].messageTemplate|transchoice(errors[0].messagePluralization, errors[0].messageParameters, 'validators')
+    }}</div>
+    {% elseif errors|length > 1 %}
+    <ul class="error">
+        {% for error in errors %}
+            <li>{{
+                error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+

@@ -1,0 +1,15 @@
+crm_abonent_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CrmAbonentBundle:Default:index }
+
+CrmAbonentBundle_abonentph:
+        resource: "@CrmAbonentBundle/Resources/config/routing/abonentph.yml"
+        prefix:   /abonentph
+        
+CrmAbonentBundle_contactinfoph:
+        resource: "@CrmAbonentBundle/Resources/config/routing/contactinfoph.yml"
+        prefix:   /contactinfoph
+        
+CrmAbonentBundle_baseabonent:
+        resource: "@CrmAbonentBundle/Resources/config/routing/baseabonent.yml"
+        prefix:   /baseabonent

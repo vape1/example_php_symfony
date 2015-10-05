@@ -1,0 +1,132 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/zkinterface/css/jquery.ZkMultiSelectWidget.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/zkinterface/js/jquery.ZkMultiSelectWidget.js') }}"></script>
+    <script src="{{ asset('js/zk_tab.js') }}"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('*[data-toggle="tabajax"]').click(function(e) {
+            e.preventDefault();
+            var loadurl = $(this).attr('href');
+            var targ = $(this).attr('data-target');
+	    if ($(targ).html() == '') {
+	        $.get(loadurl, function(data) {
+                   $(targ).html(data);
+                });
+	    }
+            $(this).tab('show');
+        });
+    });
+    </script>
+{% endblock %}
+
+{% block sf_content %}
+    
+    
+<div class="row">
+    
+    <div class="span12">
+        
+        {% if form.vars.errors|length %}
+        <p class="error">{{ form_errors(form) }}</p>
+        {% endif %}
+    
+        {% set p = user.id ? path('zk_admin_user_edit',{'id':user.id}) : path('zk_admin_user_new') %}
+    
+        <form class="well well-large row-shadow"
+              action="{{ p }}"
+              method="post" {{ form_enctype(form) }}>
+            
+            <legend>
+                {% if user.id %}
+                    {% trans with {} from 'FOSUserBundle' %}form.user{% endtrans %}&nbsp;&nbsp;
+                    {{ user.name }}&nbsp;&nbsp;(&nbsp; {{ user.email }}&nbsp;)
+                {% else %}
+                    {% trans with {} from 'FOSUserBundle' %}form.new_user{% endtrans %}
+                {% endif %}
+            </legend>
+            
+            <div class="tabbable">
+                <ul class="nav nav-tabs" id="zkTab">
+                    <li><a id="zkTab1" href="#tab1" data-toggle="tab">
+                        {% trans with {} from 'FOSUserBundle' %}form.general_data{% endtrans %}
+                    </a></li>
+                    <li><a id="zkTab2" href="#tab2" data-toggle="tab">
+                        {% trans with {} from 'FOSUserBundle' %}form.userRoles{% endtrans %}
+                    </a></li>
+                    {% if app.user.flagSuperAdmin %}
+                    <li><a id="zkTab3" href="#tab3" data-toggle="tab">
+                        {% trans with {} from 'FOSUserBundle' %}form.userGroups{% endtrans %}
+                    </a></li>
+                    {% endif %}
+                        <li><a id="zkTab4" href="{{ path('zk_user_view') }}" data-toggle="tabajax" data-target="#tab4">
+                    {% trans with {} from 'FOSUserBundle' %}form.userViews{% endtrans %}
+                </a></li>
+                </ul>
+            </div>
+            
+            <div class="tab-content">
+                <div class="tab-pane" id="tab1">
+                    <div class="row">
+                        <div class="span5">{{ form_row(form.username) }}</div>
+                    
+                    </div>
+                    
+                    <div class="row">
+                        <div class="span5">{{ form_row(form.email) }}</div>
+                        <div class="span5 offset1">{{ form_row(form.sex) }}</div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="span5">{{ form_row(form.name) }}</div>
+                        <div class="span5 offset1">{{ form_row(form.descr) }}</div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="span5">{{ form_row(form.phone) }}</div>
+                        <div class="span5 offset1" style="padding-top:16px">{{ form_row(form.enabled) }}</div>
+                    </div>
+                    {% if not user.id %}
+                    <div class="row">
+                        <div class="span5">{{ form_row(form.plainPassword) }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="tab-pane" id="tab2">
+                    <div class="row">
+                        <div class="span11">{{ form_widget(form.preUserRoles) }}</div>
+                    </div>
+                </div>
+                {% if app.user.flagSuperAdmin %}
+                <div class="tab-pane" id="tab3">
+                    <div class="row">
+                        <div class="span11">{{ form_widget(form.userGroups) }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="tab-pane" id="tab4"></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="span3">{{ form_row(form.save) }}</div>
+            </div>
+            
+            <div style="display:none;">{{ form_rest(form) }}</div>
+            
+        </form>
+    
+    </div>
+    
+    <div class="span3">
+        <a href="{{ path('zk_admin_user_list') }}" class="btn btn-success">{{ 'Back to list'|trans }}</a>
+    </div>
+    
+</div>
+
+{% endblock sf_content %}

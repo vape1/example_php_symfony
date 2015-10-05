@@ -1,0 +1,101 @@
+a:
+    title: Загальна інформація
+    contacts: Контакти
+    phone: Тел.
+    new_appl: Нова заявка
+    add_call: Звернення
+    add_abonent: Заявка
+    reason: Чому переключився
+    how_find: Звідки дізнався
+    net_card: Мережева плата
+    pasp_mont: Паспорт через монтажніка
+    dogovor_mont: Договір через монтажніка
+    rival: Від кого переключився
+    appl_note: Примітки по заявці
+    phone: Телефон
+    calls: Звернення
+    appl: Заявка
+        
+appl:
+    dateCall: Дата звернення
+    dateConn: Дата підключення
+    manager: Прийняв менеджер
+    rival: Звідки перейшов
+    reason: Чому перейшов
+    howFind: Звідки дізнався
+    
+a_numDogovor: Номер договору
+a_balance: Баланс
+a_address: Адреса
+s:
+    service: Послуги
+    tarif: Тарифний план
+    status: Статус послуги
+    channel_pack: Пакет TV
+    
+aph_name: FTTB
+title_abonent: Абонент
+aph_abon_name: Ім'я
+aph_surname: Прізвище
+aph_fatherName: Побатькові
+aph_phoneMob: моб.
+aph_phoneDom: дом.
+aph_phoneCont: конт.
+aph_os: Операційна система
+aph_profile: Профіль
+aph_email: E-mail
+aph_birthDay: Дата народження
+aph_paspSer: Серія
+aph_paspIpn: ІПН  
+aph_paspWhom: Ким виданий
+aph_paspNum: Номер
+aph_notifyPhone: SMS
+    
+abonents: Abonents
+num_dogovor: Agreement's number
+full_name: Full name
+phone: Phone
+balance: Balance
+descriptions: Descriptions
+promocode: Promocode
+notif1day: Alert for 1 day
+notif5day: Alert for 5 days
+diller: Diller
+specialOfferGroup: Group offers to sell
+paymentSystems: Payment Systems
+login: Login
+diller_type: Diller
+
+tabs:
+    general: General info
+    address: Address
+    finance: Financical statistic
+    calls: Calls
+    troubleshooting: Troubleshooting
+
+call:
+    email: Email
+    full_name: Full name
+    category: Category
+    method: Method
+    responce: Response
+    date_call: Date call
+    date_open: Date open
+    date_close: Date close
+    is_close: Is close
+    edit: edit
+    call: Calls
+    respUser: Responsible Manager
+    subcategory: Category
+    contacts: Contacts
+    quest: Quest
+    answer: Answer
+    comment: Comment
+    log: Log
+    isClose: isClose
+    no_call: Звернень немає
+    new: Нове звернення
+    
+abonent:
+    abonent: Abonents
+    card: Abonent's card

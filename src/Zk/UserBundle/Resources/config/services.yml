@@ -1,0 +1,36 @@
+parameters:
+#    zk_user.example.class: Zk\UserBundle\Example
+
+services:
+    zk_user.profile.form.type:
+        class: Zk\UserBundle\Form\Type\ProfileFormType
+        arguments: [ %fos_user.model.user.class% ]
+        tags:
+            - { name: form.type, alias: zk_user_profile }
+
+    zk_menu.builder:
+        class: Zk\UserBundle\Menu\Builder
+        arguments: ["@knp_menu.factory"]
+
+    zk_menu.main:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: zk_menu.builder
+        factory_method: createMainMenu
+        arguments: [@request,@translator,@security.context,%zk_user.menu_options%]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
+            
+    zk_menu.dop:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: zk_menu.builder
+        factory_method: createDopMenu
+        arguments: [@request,@security.context,%zk_user.menu_options%]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: dop } # The alias is what is used to retrieve the menu
+
+    zk_locale.listener.request:
+        class: Zk\UserBundle\Listener\LocaleListener
+        tags: [{ name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: -255 }]
+        arguments: [ @service_container, %zk_user.languages% ]

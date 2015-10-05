@@ -1,0 +1,2 @@
+The name should match the pattern /^GROUP_[A-Z_0-9]{1,32}$/: Название должно соответствовать шаблону /^GROUP_[A-Z_0-9]{1,32}$
+The name should match the pattern /^ROLE_[A-Z_0-9]{1,32}$/: Название должно соответствовать шаблону /^ROLE_[A-Z_0-9]{1,32}$

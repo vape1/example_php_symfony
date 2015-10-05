@@ -1,0 +1,243 @@
+{% extends '::base.html.twig' %}
+{% block title %}
+    {% trans from "abonent" %}title_abonent{% endtrans %} - {% trans from "address" %}a_name{% endtrans %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+	    /*CHANGE STREET ACTION*/
+            $('#abonent_street').change(function() {
+		$('#abonent_house option').remove();
+		$('#abonent_parad option').remove();
+		$('#abonent_flat option').remove();
+		$('.hide').hide();
+		getEntity( $(this).val(),'house');
+                $('.abonent_house').show();
+            });
+	    
+	    /*CHANGE HOUSE ACTION*/
+	    $('#abonent_house').change(function() {
+		$('#abonent_flat option').remove();
+		$('#abonent_parad option').remove();
+		$('.abonent_flat').hide();
+		getEntity( $(this).val(),'parad');
+                $('.abonent_parad').show();
+            });
+	    
+	    /*CHANGE PARAD ACTION*/
+	    $('#abonent_parad').change(function() {
+		$('#abonent_flat option').remove();
+		getEntity( $(this).val(),'flat');
+                checkFlat($(this).val());
+                
+            });
+            /*CHANGE FLAT ACTION*/
+            $('#abonent_flat').change(function() {
+	      $('#abonent_flat_info').hide();$('#flat_content').html();
+	      var content = '';
+	      $.get(Routing.generate("abonentph_flat_info", { 'id': $(this).val()} ),
+                function(data){
+		  if(data) {
+		    $.each(data, function(key, value) {
+		      content +='<div>'+value.name+' <a href="'+Routing.generate('abonentph_edit',{'id':value.id })+'">'+value.dogovor+'</a></div>';
+		    });
+		    
+		    $('#flat_content').append(content);
+	            $('#abonent_flat_info').show();
+		  }
+		}
+	      );
+              $('.appl').show();
+            });
+            
+	    /*CLICK APPL ACTION*/
+            $('#abonent_new').click(function() {
+                if ($('#abonent_flat').val() == 0) {
+                    alert('Виберіть квартиру!');
+                }
+                else {
+		    var url = Routing.generate('abonentph_new', {'flat_id': $('#abonent_flat').val()} );
+                    
+                    $(location).attr('href',url);
+                }
+            });
+        });
+	
+	function getEntity(select_val,type){
+            hideBlocks()
+	    $.get(Routing.generate("abonentph_get_house", { 'val': select_val, 'type': type} ),
+                function(data){
+		    $.each(data, function(key, value) {
+		        $('#abonent_'+type).append($('<option/>').attr("value",key).text(value));
+		    });
+		}
+	    );
+	}
+        
+        function checkFlat(select_val){
+          hideBlocks()
+          $.get(Routing.generate("baseabonent_check_flat", { 'id': select_val} ),
+                function(data){
+                    $('.call').show();
+		    if (data.ableConn) {
+                      $('#ableConn').attr("class","alert alert-success ").show();
+                      $('.abonent_flat').show();
+                    }
+                    else {$('#ableConn').attr("class","alert alert-error ").show();}
+		   
+                    if (data.accessParad) {
+                      $('#accessParad').attr("class","alert alert-success ").show();
+                    }
+                    else {$('#accessParad').attr("class","alert alert-error ").show();}
+                   
+                    if (data.comments) {
+                      $('#comments').attr("class","alert alert-info ").text(data.comments).show();
+                    }
+		}
+	  );
+        }
+	
+        function hideBlocks() {
+          $('#ableConn,#accessParad,#comments').attr("class","").hide();
+          $('.call,.appl').hide();
+        }
+//autocomplete		
+$(function() {
+    var cache = {};
+    $("#abonent_search").autocomplete({
+	minLength: 2,
+	selectFirst:true,
+        source: function( request, response ) {
+            var term = request.term;
+            if ( term in cache ) {
+                response( cache[ term ] );
+                return;
+            }
+            $.getJSON( Routing.generate("baseabonent_find", { 'row': $('#row_type').val()} ), request, function( data, status, xhr ) {
+                cache[ term ] = data;
+                response( data );
+            });
+        },
+	focus: function() { return false; },
+        open: function( event, ui ) {
+           var firstElement = $(".ui-corner-all").find("a:first")
+           , inpt = $('#abonent_search')
+           , original = inpt.val()
+           , firstElementText = $(firstElement).text();
+        /*
+	 *alert(firstElement);
+           here we want to make sure that we're not matching something that doesn't start
+           with what was typed in 
+        */
+        if(firstElementText.toLowerCase().indexOf(original.toLowerCase()) === 0){
+            inpt.val(firstElementText);//change the input to the first match
+    
+            inpt[0].selectionStart = original.length; //highlight from end of input
+            inpt[0].selectionEnd = firstElementText.length;//highlight to the end
+        }
+    }
+    });                
+});
+</script>
+{% endblock %}
+
+{% block sf_content %}
+<div class="row zk-form">
+  <div class="spanMain">
+    
+    
+    <div class="row">
+      <!-- Search abonent -->
+      <div class="span6">
+        <div class="row">
+          <div class="span3">
+            <span class="label label-info lable-vd">{% trans from "abonent" %}a.find{% endtrans %}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span1">
+            <select id="row_type" class="span1">
+	      <option value="num_dogovor"></option>
+              <option value="phone_cont">Телефон</option>
+              <option value="email">E-mail</option>
+            </select>
+          </div></div>
+        <div class="row">    
+	  <div class="span3">
+	    <input type="text" name="abonent_search" id="abonent_search"  class="span3"/>
+          </div>
+        </div>
+      </div>
+      <!-- New abonent -->
+      <div class="span3">
+        <div class="row">
+          <div class="span3">
+            <span class="label label-info lable-vd">{% trans from "abonent" %}a.new_appl{% endtrans %}</span>
+          </div>
+        </div>
+        <div class="row">    
+	  <div class="span3">
+            <label>{% trans from "address" %}s_nameUa{% endtrans %}</label>
+	    <select id="abonent_street" class="span3">
+	      <option value=""></option>
+	      {% for i,street in streets%}
+	      <option value="{{ street.id }}">{{ street.nameUa }}</option>
+	      {% endfor %}
+	    </select>
+          </div>
+          <div class="span1 hide abonent_house">
+                <label>{% trans from "address" %}h_name{% endtrans %}</label>
+		<select id="abonent_house" class="span1">
+		    
+		</select>
+          </div>
+          <div class="span1 hide abonent_parad">
+                <label>{% trans from "address" %}p_name{% endtrans %}</label>
+		<select id="abonent_parad" class="span1">
+		    
+		</select>
+          </div>
+          <div class="span1 hide abonent_flat">
+                <label>{% trans from "address" %}f_name{% endtrans %}</label>
+		<select id="abonent_flat" class="span1" name="crm_abonentbundle_abonentph[flat][name]">
+		  
+		</select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span3 info">
+            <div id="ableConn" class="hide">Можливість підключення</div>
+            <div id="accessParad" class="hide">Доступ до під’їзду</div>
+            <div id="comments" class="hide"></div>
+	    <div id="abonent_flat_info" class="hide alert alert-block">
+	      <label style="color:black">Заявки в квартирі</label>
+	      <div id="flat_content"></div>
+	    </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span2 hide call">
+            <a  id="call_flat" href="#" class="btn btn-info">
+                {% trans from "abonent" %}a.add_call{% endtrans %}
+            </a>
+          </div>
+          <div class="span1 hide appl">
+            <a id="abonent_new"  href="#" class="btn btn-success">
+                {% trans from "abonent" %}a.add_abonent{% endtrans %}
+            </a>
+          </div>
+        </div>
+        <!-- END New abonent -->
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

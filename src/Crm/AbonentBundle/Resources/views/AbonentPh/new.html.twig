@@ -1,0 +1,93 @@
+{% extends '::base.html.twig' %}
+{% block title %}
+    {% trans from "abonent" %}title_abonent{% endtrans %} - {% trans from "abonent" %}aph_name{% endtrans %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block sf_content %}
+  <div class="row zk-form">
+    <div class="span11">
+      {{ form_errors(form) }}
+      {{ form_start(form) }}
+        <div class="row">
+	  <div class="span10">
+	    <span class="label label-info lable-vd">
+	      {% trans from "abonent" %}s.service{% endtrans %}
+	    </span>
+	  </div>
+          <div class="span3">{{ form_row(form.service.service) }}</div>
+        </div>
+	<hr>
+	<div class="row">
+	  <div class="span10">
+	    <span class="label label-info lable-vd">
+	      {% trans from "abonent" %}a.contacts{% endtrans %}
+	    </span>
+	  </div>
+          <div class="span3">{{ form_row(form.surname) }}</div>
+	  <div class="span3">{{ form_row(form.firstName) }}</div>
+	  <div class="span3">{{ form_row(form.fatherName) }}</div>
+        </div>
+        <div class="row">
+	  <div class="span3">{{ form_row(form.contactInfo.phoneMob) }}</div>
+	  <div class="span3">{{ form_row(form.contactInfo.phoneDom) }}</div>
+	  <div class="span3">{{ form_row(form.phoneCont) }}</div>
+        </div>
+        <div class="row">
+	  <div class="span2">{{ form_row(form.email) }}</div>
+        </div>
+	<hr>
+	<div class="row">
+	  <div class="span2">{{ form_row(form.appl.dogovor_mont) }}</div>
+	  <div class="span2">{{ form_row(form.appl.pasp_mont) }}</div>
+	  <div class="span2">{{ form_row(form.appl.net_card) }}</div>
+	  <div class="span2">{{ form_row(form.contactInfo.rent) }}</div>
+	</div>
+	<hr>
+	<div class="row">
+	  <div class="span10">
+	    <span class="label label-info lable-vd">{% trans from "abonent" %}a.reason{% endtrans %}</span>
+	  </div>
+	  {% for reason in form.appl.reason  %}
+	  <div class="span2">{{ form_row(reason) }}</div>
+	  {% endfor %}
+        </div>
+	<hr>
+	<div class="row">
+	  <div class="span10">
+	    <span class="label label-info lable-vd">{% trans from "abonent" %}a.how_find{% endtrans %}</span>
+	  </div>
+	  {% for how_find in form.appl.how_find  %}
+	    <div class="span2">{{ form_row(how_find) }}</div>
+	  {% endfor %}
+        </div>
+	<hr>
+	<div class="row">
+	  <div class="span10">
+	    <span class="label label-info lable-vd">{% trans from "abonent" %}a.rival{% endtrans %}</span>
+	  </div>
+	  {% for rival in form.appl.rival  %}
+	    <div class="span2">{{ form_row(rival) }}</div>
+	  {% endfor %}
+        </div>
+	<div class="row">
+	  <div class="span8">{{ form_row(form.appl.note) }}</div>
+        </div>
+        <div style="display:none;">
+	{{ form_rest(form) }}
+	</div>
+        <div class="span3">
+	  <button class="btn btn-primary" type="submit">{% trans from "address" %}save{% endtrans %}</button>
+	</div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

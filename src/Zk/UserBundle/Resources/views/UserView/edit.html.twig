@@ -1,0 +1,110 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/zkinterface/css/jquery.ZkMultiSelectWidget.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/zkinterface/js/jquery.ZkMultiSelectWidget.js') }}"></script>
+    <script src="{{ asset('js/zk_tab.js') }}"></script>
+    <script type="text/javascript">
+    $(function() {
+        $( ".accordion" ).accordion({ active: false, collapsible: true });
+    
+        $( "#user_views_list" )
+            .ZkMultiSelectWidget({
+                ZkHeight: 400,
+                ZkWidth:  400,
+                ZkSearch: true,
+                ZkRange:  true,
+	        //ZkDescr:  ,
+	        ZkOptionsDisabled: []
+        });
+            
+         $( "#user_views_filter" )
+            .ZkMultiSelectWidget({
+                ZkHeight: 400,
+                ZkWidth:  400,
+                ZkSearch: true,
+                ZkRange:  true,
+	        //ZkDescr:  ,
+	        ZkOptionsDisabled: []
+        });
+    
+    });
+    </script>
+
+{% endblock %}
+
+{% block sf_content %}
+
+<div class="row zk-form">
+    <div class="spanMain">
+	{{ form_errors(form) }}
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="span4">{{form_row(form.name)}}</div>
+            <div class="span4">{{form_row(form.module)}}</div>
+        </div>
+        {% if userView.id %}
+	<div class="row">
+	 <div class="span11">
+	  <div class="accordion span11">
+            <h7>{% trans with {} from 'address' %}uv_list{% endtrans %}</h7>
+	    <div>
+                <div class="row">
+                    <div class="span10">{{form_row(form.name)}}</div>
+                    <div class="span9">
+                        <select name="user_views_list[]" id='user_views_list' multiple='multiple' size="20">
+                            {% for id,view in views_selected_list %}
+                            <option value="{{ id }}" SELECTED >{{ view }}</option>
+                            {% endfor %}
+                            {% for id,view in views_list %}
+                            <option value="{{ id }}">{{ view }}</option>
+                            {% endfor %}
+		        </select>
+		    </div>
+		</div>
+            </div>   
+            <h7>{% trans with {} from 'address' %}uv_filter{% endtrans %}</h7>
+            <div>
+             <div class="row">
+                    <div class="span9">
+                        <select name="user_views_filter[]" id='user_views_filter' multiple='multiple' size="20">
+                            {% for id,view in views_selected_filter %}
+                            <option value="{{ id }}" SELECTED >{{ view }}</option>
+                            {% endfor %}
+                            {% for id,view in views_filter %}
+                            <option value="{{ id }}">{{ view }}</option>
+                            {% endfor %}
+		        </select>
+		    </div>
+		</div>
+            </div>
+	  </div>
+	 </div>
+	</div>
+        {% endif %}
+        <hr>
+	
+        <div class="row">
+	    <div class="span4">
+	        <a href="{{ path('zk_admin_user_edit',{'id':userView.user.id}) }}" class="btn btn-success">{% trans from "address" %}back{% endtrans %}</a>
+	    </div>
+	    <div class="span4">{{ form_row(form.save) }}</div>
+	    {% if userView.id %}
+	    <div class="span2">
+		<a href="{{ path('zk_user_view_delete', {'id': userView.id}) }}" class="btn btn-danger">{% trans from "address" %}dell{% endtrans %}</a>
+	    </div>
+	    {% endif %}
+        </div>
+    </div>
+ </div>
+
+<div style="display:none;">{{ form_rest(form) }}</div>
+
+{{ form_end(form) }}
+
+{% endblock sf_content %}

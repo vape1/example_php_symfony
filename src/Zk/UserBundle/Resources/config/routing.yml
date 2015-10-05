@@ -1,0 +1,75 @@
+zk_admin_homepage:
+    pattern:  /user/list
+    defaults: { _controller: ZkUserBundle:User:list }
+
+zk_set_locale:
+    pattern:  /set_locale/{locale}
+    defaults: { _controller: ZkUserBundle:Default:setLocale, locale: en }
+    
+zk_get_language:
+    pattern:  /get_language
+    defaults: { _controller: ZkUserBundle:Default:getLanguage }
+
+zk_admin_user_list:
+    pattern:  /user/list
+    defaults: { _controller: ZkUserBundle:User:list }
+
+zk_admin_user_edit:
+    pattern:  /user/{id}/edit
+    defaults: { _controller: ZkUserBundle:User:edit }
+
+zk_admin_user_new:
+    pattern:  /user/new
+    defaults: { _controller: ZkUserBundle:User:new }
+
+zk_admin_user_group_description:
+    pattern:  /user_gorup_description/{id}
+    defaults: { _controller: ZkUserBundle:User:gorupDescription }
+    options:
+        expose: true
+
+zk_admin_user_role_description:
+    pattern:  /user_role_description/{id}
+    defaults: { _controller: ZkUserBundle:User:roleDescription }
+    options:
+        expose: true
+
+zk_admin_role_list:
+    pattern:  /role/list
+    defaults: { _controller: ZkUserBundle:Role:list }
+
+zk_admin_role_edit:
+    pattern:  /role/{id}/edit
+    defaults: { _controller: ZkUserBundle:Role:edit }
+
+zk_admin_role_new:
+    pattern:  /role/new
+    defaults: { _controller: ZkUserBundle:Role:new }
+
+zk_admin_group_list:
+    pattern:  /group/list
+    defaults: { _controller: ZkUserBundle:Group:list }
+
+zk_admin_group_edit:
+    pattern:  /group/{id}/edit
+    defaults: { _controller: ZkUserBundle:Group:edit }
+
+zk_admin_group_new:
+    pattern:  /group/new
+    defaults: { _controller: ZkUserBundle:Group:new }
+
+zk_user_view:
+    pattern:  /user_view
+    defaults: { _controller: ZkUserBundle:UserView:list }
+    
+zk_user_view_edit:
+    pattern:  /user_view/{id}/edit
+    defaults: { _controller: ZkUserBundle:UserView:edit }
+
+zk_user_view_new:
+    pattern:  /user_view/new
+    defaults: { _controller: ZkUserBundle:UserView:new }
+    
+zk_user_view_delete:
+    pattern:  /user_view/{id}/delete
+    defaults: { _controller: ZkUserBundle:UserView:delete }

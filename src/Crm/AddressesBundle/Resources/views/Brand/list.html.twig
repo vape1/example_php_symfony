@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+{% block title %}
+    {% trans from "address" %}title_addresses{% endtrans %} - {% trans from "address" %}h_name{% endtrans %}
+{% endblock %}
+{% block sf_content %}
+
+   
+{% include 'ZkInterfaceBundle:AdminInterface:adminList.html.twig' with {
+    'items': items,
+    'results': results,
+    'style': 'mini'
+} %}
+
+{% endblock %}

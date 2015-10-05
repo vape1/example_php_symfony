@@ -1,0 +1,193 @@
+.help-inline{
+    display: block;
+    color: red;
+    font-size: 10px;
+}
+/** Styling input[type=file] **/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    margin-right: 4px;
+}
+.btn-file input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+    
+    }
+/* Fix for IE 7: */
+* + html .btn-file {
+    padding: 2px 15px;
+    margin: 1px 0 0 0;
+}
+/** END Styling input[type=file] **/
+.zk-error{
+    color: red;
+}
+.sf_table .even{
+    background-color:#EAEAEA !important;
+}
+.sf_table tr:hover{
+    background-color:#FAFCC7 !important;
+}
+.zk-form{
+    margin-left: 0;
+    background: #F1F1F1;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.zk-form legend,.zk-forms hr{
+    width: 95%;
+}
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   speak for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.loading_pleace_wait {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .4 ) 
+                url('https://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    /*overflow: hidden; */  
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .loading_pleace_wait {
+    display: block;
+}
+div.alert-dialog{
+    padding:30px !important;
+    text-align:center !important;
+    color: #707070 !important;
+}
+.odd:hover, .even:hover{
+    background-color:#FAFCC7 !important;
+}
+.odd{
+    background-color:#F2EFEF !important;
+}
+.even{
+  
+}
+.error{
+    background: url("../img/error.png") no-repeat scroll 10px 4px #FFF9CE;
+    border: 1px solid #FF7A7A;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin: 10px;
+    padding: 6px !important;
+    padding-left: 30px !important;
+    color: red;
+}
+.notice{
+    background: url("../img/tick.png") no-repeat scroll 10px 4px #EAF7EC;
+    border: 1px solid #4B9655;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin: 10px;
+    padding: 6px !important;
+    padding-left: 30px !important;
+    color: #0076FF;
+}
+/* ----------------------- STAT_TABLE -------------------------*/
+.stat_table{
+    margin: 0 auto !important;
+    margin-bottom: 10px !important;
+    background: #FFFFFF;
+}
+.stat_table td,.stat_table th {
+    text-align: center;
+    border: 1px solid #CCCCCC;
+}
+.stat_table th{
+    padding: 15px;
+}
+.stat_table td{
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.pay_stat_table td,.pay_stat_table th{
+    font-size: 10px;
+    text-align: center;
+    padding: 4px 2px;
+}
+.border_left{
+    border-left: 2px solid #A8A8A8 !important;
+}
+/* -------------------END STAT_TABLE -------------------------*/
+.label_inline label{
+    display: inline;
+    padding-left: 5px;
+}
+
+.login {
+    margin: 15% 30%;
+    padding: 14px;
+    width: 500px;
+}
+.spanMain {
+    width: 1140px;
+}
+
+.lable-vd {
+    padding: 7px;
+    font-size: 16px;
+}
+
+.table-vd {
+    background: #FFFFFF;
+    padding: 15px;
+}
+
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder{ 
+    visibility: hidden !important;
+}
+
+input[type="checkbox"] {
+width: auto !important;
+}
+
+.icon-submenu {
+  background-position: -144px -96px;
+  margin-left: 30px;
+}
+
+[class*="span"]{
+    margin-bottom: 5px !important;
+}
+
+.hide{
+    display: none;
+}
+
+.check_box_input {
+    margin-top: 30px;
+}

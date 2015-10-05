@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+    });
+</script>
+<div class="img-polaroid" style="width: 95%;">
+<table class="sf_table table table-condensed">
+    {% if views.count > 0 %}
+    <tr>
+        <th>Назва</th>
+        <th>Модуль</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% set i = 1 %}
+    {% for view in views %}
+    <tr class="{{ cycle(['odd', 'even'], i) }} tabs_th">
+        <td align="center">{{ view.name }}</td>
+        <td align="center">{{ type_view[view.module] }}</td>
+        <td align="center">
+            <a href="{{ path('zk_user_view_edit', { 'id': view.id }) }}">
+                {{ 'Edit' | trans }}
+            </a>
+        </td>
+        <td align="center">
+            <a href="{{ path('zk_user_view_delete', { 'id': view.id }) }}"
+                onclick="return confirm('Видалити налаштування?') ? true : false;">
+                {{ 'Delete' | trans }}
+            </a>
+        </td>
+    </tr>
+    {% set i = i + 1 %}
+{% endfor %}
+{% else %}
+<tr><td style="width:900px;" align="center">Налаштування відсутні</td></tr>
+{% endif %}
+</table>
+
+    <div class="row">
+        <div class="offset4 span3">
+            <a href="{{ path('zk_user_view_new')}}" class="btn btn-primary">Створити</a>
+         </div>
+    </div>
+</div>

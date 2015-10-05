@@ -1,0 +1,71 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ContactInfoPh list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Fathername</th>
+                <th>Datevalidemail</th>
+                <th>Notifyemailone</th>
+                <th>Notifyemailfive</th>
+                <th>Lang</th>
+                <th>Email</th>
+                <th>Phonemob</th>
+                <th>Phonedom</th>
+                <th>Phonecont</th>
+                <th>Notifyphone</th>
+                <th>Os</th>
+                <th>Flagdog</th>
+                <th>Flagpasp</th>
+                <th>Profile</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('contactinfoph_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.surname }}</td>
+                <td>{{ entity.fatherName }}</td>
+                <td>{% if entity.dateValidEmail %}{{ entity.dateValidEmail|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.notifyEmailOne }}</td>
+                <td>{{ entity.notifyEmailFive }}</td>
+                <td>{{ entity.lang }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.phoneMob }}</td>
+                <td>{{ entity.phoneDom }}</td>
+                <td>{{ entity.phoneCont }}</td>
+                <td>{{ entity.notifyPhone }}</td>
+                <td>{{ entity.os }}</td>
+                <td>{{ entity.flagDog }}</td>
+                <td>{{ entity.flagPasp }}</td>
+                <td>{{ entity.profile }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('contactinfoph_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('contactinfoph_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('contactinfoph_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

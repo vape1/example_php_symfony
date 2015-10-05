@@ -1,0 +1,45 @@
+baseabonent:
+    pattern:  /
+    defaults: { _controller: "CrmAbonentBundle:BaseAbonent:index" }
+
+baseabonent_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CrmAbonentBundle:BaseAbonent:show" }
+    
+base_abonent_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CrmAbonentBundle:BaseAbonent:edit" }
+
+baseabonent_check_flat:
+    pattern:  /{id}/check
+    defaults: { _controller: "CrmAbonentBundle:BaseAbonent:checkParad" }
+    options:
+        expose: true
+
+baseabonent_find:
+    pattern:  /find
+    defaults: { _controller: "CrmAbonentBundle:BaseAbonent:find" }
+    options:
+        expose: true
+        
+abonent_calls:
+    pattern:  /abonent_calls/{abonent_id}
+    defaults: { _controller: CrmAbonentBundle:Calls:abonentCalls }
+    requirements:
+        abonent_id: \d+
+    options:
+        expose: true
+        
+abonent_calls_list:
+    pattern:  /abonent_calls
+    defaults: { _controller: "CrmAbonentBundle:Calls:list" }
+    
+abonent_calls_edit:
+    pattern:  /calls/{id}/edit
+    defaults: { _controller: "CrmAbonentBundle:Calls:edit" }
+    
+abonent_calls_new:
+    pattern:  /calls/new/{abonent_id}
+    defaults: { _controller: CrmAbonentBundle:Calls:new }
+    requirements:
+        abonent_id: \d+

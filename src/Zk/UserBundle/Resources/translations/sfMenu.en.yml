@@ -1,0 +1,25 @@
+main:
+    home: Main
+    profile: Profile
+    change_password: Change password
+    login: Login
+    logout: Logout
+    user_list: User's list
+    role_list: Role's list
+    group_list: Group's list
+
+content:
+    admin_content: Admin content
+    slider: Sliders list
+    banner: Banners list
+    content_group: Content's groups
+    content: Contents list
+    admin_services: Services
+    admin_addon_services: Addon Services
+    wiki: Wiki
+    descr: Description
+    
+abonent:
+    abonents: Abonents
+    calls: Calls
+

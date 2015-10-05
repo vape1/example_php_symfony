@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+{% block title %}
+    {% trans from "address" %}title_addresses{% endtrans %} - {% trans from "address" %}rvl_name{% endtrans %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block sf_content %}
+    
+    
+<div class="row zk-form">
+    
+    <div class="spanMain">
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+	
+	<div class="row">
+	    <div class="span3">{{ form_row(form.name) }}</div>
+	</div>
+		<hr>
+		    <div class="row">
+			<div class="span5">
+			    <a href="{{ path('crm_addresses_rival_list') }}" class="btn btn-primary">{% trans from "address" %}back{% endtrans %}</a>
+			</div>
+                        <div class="span5">
+			    <button class="btn btn-success" type="submit">{% trans from "address" %}save{% endtrans %}</button>
+			</div>
+			{% if rival.id %}
+			<div class="span1">
+			    <a href="{{ path('crm_addresses_rival_delete', {'id': rival.id}) }}" class="btn btn-danger">{% trans from "address" %}dell{% endtrans %}</a>
+			</div>
+			{% endif %}
+		    </div>
+		<hr>
+        <div style="display:none;">{{ form_rest(form) }}</div>
+	
+	{{ form_end(form) }}
+    
+    </div>
+    
+{% endblock sf_content %}

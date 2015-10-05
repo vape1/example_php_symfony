@@ -1,0 +1,88 @@
+{% extends "::base.html.twig" %}
+
+{% block fos_user_content %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+    
+<div class="row">
+    
+        <form class="span7 offset2 well well-large login"
+              action="{{ path("fos_user_security_check") }}"
+              method="post" >
+            <legend>
+		Ласкаво просимо до CRM <img src="/img/logo.png" class="img-rounded">
+		<p><small>{{ 'security.legend'|trans }}</small></p>
+	    </legend>
+            
+            
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            {% if error %}
+                <div class="error">{{ error|trans }}</div>
+            {% endif %}
+
+            <div class="row">
+	        <div class="span2">
+	            <label for="username">
+		        {{ 'security.username'|trans }}
+	            </label>
+	        </div>
+	        <div class="span3">
+	            <input type="text" id="username" name="_username"
+		           value="{{ last_username }}" required="required" />
+	        </div>
+            </div>
+            
+            <div class="row">
+	        <div class="span2">
+	            <label for="password">
+		        {{ 'security.password'|trans }}
+	            </label>
+	        </div>
+	        <div class="span3">
+	            <input type="password" id="password"
+		           name="_password" required="required" />
+	        </div>
+            </div>
+            
+            <!--<div class="row">
+	        <div class="span2 offset1">
+	            <label for="remember_me">
+		        {{ 'security.login.remember_me'|trans }}
+	            </label>
+	        </div>
+	        <div class="span5">
+	            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+	        </div>
+            </div>-->
+            
+            <div class="row">
+	        <div class="span2 offset1">
+	            <label></label>
+	        </div>
+	        <div class="span2 offset2">
+		    <br>
+	            <input type="submit" id="_submit" name="_submit" class="btn btn-large btn-primary btn-block"
+		           value="{{ 'security.submit'|trans }}" />
+	        </div>
+            </div>
+            
+            <div class="row">
+	        <div class="span4 text-left">
+	            <a  href="{{ path('fos_user_resetting_request') }}" >
+                        {{ 'resetting.subject'|trans }}
+                    </a>
+	        </div>
+	        <!--<div class="span4 text-right">
+	            <a class="btn btn-success" href="{#{ path('fos_user_registration_register') }#}">
+                        {#{ 'registration.submit'|trans }#}
+                    </a>
+	        </div>-->
+            </div>
+    
+        </form>
+
+</div>
+
+{% endblock %}
+

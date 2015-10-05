@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+    });
+</script>
+<div class="img-polaroid" style="width: 95%;">
+<table class="sf_table table table-condensed">
+    {% if calls.count > 0 %}
+    <tr>
+        <th>{% trans with {} from 'abonent' %}call.respUser{% endtrans %}</th>
+        <th>{% trans with {} from 'abonent' %}call.isClose{% endtrans %}</th>
+        <th>{% trans with {} from 'abonent' %}call.dateCall{% endtrans %}</th>
+        <th>{% trans with {} from 'abonent' %}call.dateOpen{% endtrans %}</th>
+        <th>{% trans with {} from 'abonent' %}call.dateClose{% endtrans %}</th>
+        <th>{% trans with {} from 'abonent' %}call.subcategory{% endtrans %}</th>
+        <th>{% trans with {} from 'abonent' %}call.method{% endtrans %}</th>
+        <th>{% trans %}Edit{% endtrans %}</th>
+    </tr>
+    {% set i = 1 %}
+    {% for call in calls %}
+    <tr class="{{ cycle(['odd', 'even'], i) }} tabs_th">
+        <td>{{ call.respUser ? call.respUser.name : '' }}</td>
+        <td align="center">{{ call.isClose ? "Closed" | trans : "Opened" | trans }}</td>
+        <td align="center">{{ call.dateCall | date("Y-m-d H:i") }}</td>
+        <td align="center">{{ call.dateOpen ? call.dateOpen | date("Y-m-d H:i") : '' }}</td>
+        <td align="center">{{ call.dateClose ? call.dateClose | date("Y-m-d H:i") : '' }}</td>
+        <td>{{ call.subcategory ? call.subcategory.name : '' }}</td>
+        <td>{{ call.method ? call.method.name : '' }}</td>
+        <td align="center">
+            <a href="{{ path('abonent_calls_edit', { 'id': call.id }) }}">
+                {{ 'Edit' | trans }}
+            </a>
+        </td>
+    </tr>
+    {% set i = i + 1 %}
+{% endfor %}
+{% else %}
+<tr><td style="width:900px;" align="center"><legend>{% trans with {} from 'abonent' %}call.no_call{% endtrans %}</legend></td></tr>
+{% endif %}
+</table>
+
+    <div class="row">
+        <div class="offset4 span3">
+            <a href="{{ path('abonent_calls_new', {'abonent_id':abonent_id}) }}" class="btn btn-primary">{% trans with {} from 'abonent' %}call.new{% endtrans %}</a>
+         </div>
+    </div>
+</div>

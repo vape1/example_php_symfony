@@ -1,0 +1,59 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row">
+    
+    <form class="span8 offset2 well well-large"
+          action="{{ path("fos_user_profile_edit") }}"
+          {{ form_enctype(form) }} method="post" >
+
+            <legend>{{ 'form.profile'|trans }}</legend>
+            <hr>
+	    
+            <div class="row">
+	        <div class="span3 offset1">
+	            {{ form_label(form.name) }}
+	        </div>
+	        <div class="span4">
+	            {{ form_errors(form.name) }}{{ form_widget(form.name) }}
+	        </div>
+            </div>
+	    
+            <div class="row">
+	        <div class="span3 offset1">
+	            {{ form_label(form.email) }}
+	        </div>
+	        <div class="span4">
+	            {{ form_errors(form.email) }}{{ form_widget(form.email) }}
+	        </div>
+            </div>
+	    
+            <div class="row">
+	        <div class="span3 offset1">
+	            {{ form_label(form.phone) }}
+	        </div>
+	        <div class="span4">
+	            {{ form_errors(form.phone) }}{{ form_widget(form.phone) }}
+	        </div>
+            </div>
+	    
+            <div class="row">
+	        <div class="span3 offset1">
+	            {{ form_label(form.sex) }}
+	        </div>
+	        <div class="span4">
+	            {{ form_errors(form.sex) }}{{ form_widget(form.sex) }}
+	        </div>
+            </div>
+
+            <div class="row">
+	        <div class="span3 offset1"></div>
+	        <div class="span4">
+                    <button type="submit" class="btn btn-primary">
+		        {{ 'profile.edit.submit'|trans }}
+	            </button>
+	        </div>
+            </div>
+        
+            {{ form_rest(form) }}
+    
+        </form>

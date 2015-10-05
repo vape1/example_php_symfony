@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block sf_content %}
+
+{% set thisRoute = app.request.attributes.get('_route') %}
+   
+<div class="img-polaroid">
+    
+    <div class="navbar">
+        <div class="navbar-inner">
+         
+        </div>
+    </div>
+    {% block crm_all_services %}{% endblock %}
+
+</div>
+
+{% endblock sf_content %}
+
+
+

@@ -1,0 +1,74 @@
+parameters:
+#    zk_admin.example.class: Zk\InterfaceBundle\Example
+
+services:
+    
+    #sf_oauth_user_provider:
+    #    class: Zk\InterfaceBundle\Security\Core\User\FOSUBUserProvider
+    #    #this is the place where the properties are passed to the UserProvider - see config.yml
+    #    arguments: [@fos_user.user_manager,{google: google_id}]
+    
+    zk_admin_interface.listener.login:
+        class: Zk\InterfaceBundle\Listener\SecurityListener
+        arguments: [ @security.context, @session ]
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onSecurityInteractiveLogin }
+
+    zk_admin_interface.twig_extension:     
+        class:        Zk\InterfaceBundle\Twig\Extension\AdminInterfaceExtension
+        arguments:    [@service_container]     
+        tags:       
+            -  { name: twig.extension }
+
+    zk_admin_interface.form.type.text_filter:     
+        class:  Zk\InterfaceBundle\AdminInterface\Form\Type\TextFilterType
+        tags:
+            - { name: form.type, alias: text_filter }
+
+    zk_admin_interface.form.type.boolean_filter:     
+        class:  Zk\InterfaceBundle\AdminInterface\Form\Type\BooleanFilterType
+        tags:
+            - { name: form.type, alias: boolean_filter }
+
+    zk_admin_interface.form.type.entity_filter:     
+        class:  Zk\InterfaceBundle\AdminInterface\Form\Type\EntityFilterType
+        tags:
+            - { name: form.type, alias: entity_filter }
+
+    zk_admin_interface.form.type.date_filter:     
+        class:  Zk\InterfaceBundle\AdminInterface\Form\Type\DateFilterType
+        tags:
+            - { name: form.type, alias: date_filter }
+
+    zk_admin_interface.form.type.choice_filter:     
+        class:  Zk\InterfaceBundle\AdminInterface\Form\Type\ChoiceFilterType
+        tags:
+            - { name: form.type, alias: choice_filter }
+
+    zk_interface.form.type.zk_multi_select:     
+        class:  Zk\InterfaceBundle\Form\Type\ZkMultiSelectType
+        tags:
+            - { name: form.type, alias: zk_multi_select }
+
+    zk_interface.form.type.zk_date_time_bootstramp:     
+        class:  Zk\InterfaceBundle\Form\Type\DateTimeBootstrampType
+        tags:
+            - { name: form.type, alias: zk_date_time_bootstramp }
+
+    zk_admin_interface.query_builder:
+        class:        Zk\InterfaceBundle\AdminInterface\QueryBuilder
+
+    zk_admin_interface.form_filter_session:
+        class:        Zk\InterfaceBundle\AdminInterface\FormFilterSession
+        arguments:    [@service_container]     
+            
+    form.type_extension.help_message:
+        class: Zk\InterfaceBundle\Form\Extension\HelpMessageTypeExtension
+        tags:
+          - { name: "form.type_extension", alias: "form" }
+
+    form.form.type.jquery_entity_combobox:     
+        class:  Zk\InterfaceBundle\Form\Type\JqueryEntityComboboxType
+        arguments: [@doctrine]
+        tags:
+            - { name: form.type, alias: jquery_entity_combobox }

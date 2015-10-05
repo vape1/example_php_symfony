@@ -1,0 +1,114 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/zkinterface/css/jquery.ZkMultiSelectWidget.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ tinymce_init() }}
+    <script src="{{ asset('bundles/zkinterface/js/jquery.ZkMultiSelectWidget.js') }}"></script>
+    <script src="{{ asset('js/zk_tab.js') }}"></script>
+{% endblock %}
+
+{% block sf_content %}
+    
+    
+<div class="row zk-form">
+    <div class="span12">
+        {% if call.abonent %}
+	    <div class="row">
+                    <div class="span2">№ договора </div>
+		    <div class="span10">{{  call.abonent.numDogovor }}</div>
+                    <div class="span2">Email </div>
+		    <div class="span10">{{ call.abonent.email ? :'-' }}</div>
+		    <div class="span2">Имя </div>
+		    <div class="span5">{{ call.name ? call.name : call.abonent.name}}</div>
+		    <div class="span4"> <input type="button" class="btn btn-info" value="Карточка абонента"
+                        onclick='document.location.href="{{ path('base_abonent_edit', { 'id': call.abonent.id }) }}"' />
+		    </div>
+		    <div class="span2">Телефон </div>
+		    <div class="span6">{{ call.abonent.phoneCont?:'-' }}</div>    
+            </div>
+	    <div class="row">
+              
+            </div>
+               
+	    {% else %}
+            <div class="row">
+		<div class="span2">Имя </div>
+		<div class="span10">{{ call.name ? call.name : '-'}}</div>
+		<div class="span2">Контакты </div>
+		<div class="span10">{{ call.contacts }}</div>
+            </div>
+	  
+	{% endif %}
+	{% for attachment in call.attachments %}
+               <div class="row">
+                    <div class="span2"><label>Вложение:</label></div>
+                    <div class="span4">
+                        <a href="{{ asset('/uploads/call_attach/') }}{{ attachment.name }}">
+                            {{ attachment.originalName }}
+                        </a>
+                    </div>
+                </div>
+        {% endfor %}
+    <hr>
+    </div>
+    
+    <div class="span12">
+        
+        {{ form_errors(form) }}
+    
+        {{ form_start(form) }}
+	    <div class="row">
+                <div class="span3">{{ form_row(form.respUser) }}</div>
+                <div class="span3">{{ form_row(form.subcategory) }}</div>
+		<div class="span3">{{ form_row(form.method) }}</div>
+            </div>
+	    <hr>
+	    <div class="row">
+                <div class="span4">Создано: {{ call.dateCall | date}}</div>
+                <div class="span4">Открыто: {{ call.dateOpen | date}}</div>
+		<div class="span4">Закрыто: {{ call.dateClose ? call.dateClose| date : '---'}}</div>
+            </div>
+	    <hr>
+	    <div class="row">
+		<div class="offset2 span1">{{ form_row(form.isClose) }}</div>
+                <div class="span2">{{ form_row(form.save) }}</div>
+		<div class="span3"><a href="{{ path('abonent_calls_list') }}" class="btn btn-success">{{ 'Back to list'|trans }}</a></div>
+            </div>
+	    {% if send_email is defined and send_email %}
+	        <hr>
+	        <div class="row">
+	            <div class="offset2 span3"> <input type="submit" class="btn btn-info" name="go_send_email" value="Отправить ответ на email" /></div>
+	            <div class="span5"> <input type="text" class="span4" name="text_send_email" value="{{ call.abonent ? call.abonent.email : ''}}" /></div>
+	        </div>
+	    {% elseif call.support %}
+	        <div class="row">
+	            <div class="offset2 span3">Был отправлен ответ на email</div>
+	        </div>
+	    {% endif %}
+	    <hr>
+	    <div class="row">
+		<div class="span9">{{ form_row(form.quest) }}</div>
+	    </div>
+	    <div class="row">
+	       <div class="span9">{{ form_row(form.answer) }}</div>
+	    </div>
+	    <hr>
+	    <div class="row">
+                <div class="span19">{{ form_row(form.comment) }}</div>
+		<div class="span9">{{ form_row(form.log) }}</div>
+	    </div>
+
+            <div style="display:none;">{{ form_rest(form) }}</div>
+	
+	{{ form_end(form) }}
+    
+    </div>
+    
+</div>
+
+{% endblock sf_content %}

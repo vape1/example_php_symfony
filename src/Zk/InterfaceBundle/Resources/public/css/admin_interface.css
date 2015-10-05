@@ -1,0 +1,102 @@
+/*  FILTER  */
+.filter_label{
+    color: #017083;
+}
+.filter_link{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.filter_link:hover{
+    text-decoration: underline;
+}
+.sf_filter_header{
+    background: #5D93CE;
+    border-radius: 3px;
+}
+
+.sf_filter_header a{
+    color: white;
+}
+.sf_table .sortable, .sf_table .sorted a{
+    color: #FFFFFF;
+}
+.sf_table .sortable:hover, .sf_table .sorted a:hover{
+    text-decoration: underline;
+}
+.sf_table .pagination {
+    margin: 3px 0;
+}
+#sf_filter ul li{
+    display: inline-block;
+}
+#sf_filter td{
+    min-width: 370px;
+    width: 370px;
+    border-top: none;
+    border-bottom: 1px solid #DDDDDD;
+}
+#sf_filter th{
+    text-align: center;
+}
+#sf_filter img{
+    margin-bottom: 10px;
+}
+#sf_filter .sf_filter_condition_pattern,
+#sf_filter .sf_filter_condition_operator,
+#sf_filter .sf_filter_text,
+#sf_filter .sf_filter_select{
+    line-height: 18px !important;
+    height: 18px !important;
+    font-size: 10px !important;
+    padding: 1px !important;
+}
+#sf_filter .sf_filter_condition_pattern{
+    width: 50px !important;
+}
+#sf_filter .sf_filter_condition_operator{
+    width: 60px !important;
+}
+#sf_filter .sf_filter_text{
+    line-height: 14px !important;
+    height: 14px !important;
+    font-size: 9px !important;
+    width: 180px !important;
+}
+#sf_filter .sf_filter_text_min{
+    width: 100px !important;
+}
+#sf_filter .sf_filter_select{
+    width: 180px !important;
+}
+#sf_filter .th_footer{
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+    background: #5D93CE !important;
+    
+}
+/*   END FILTER  */
+.table-condensed th, .table-condensed td {
+    padding: 4px 5px;
+}
+.sf_table th, .sf_table td {
+    border-top: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    line-height: 20px;
+    padding: 8px;
+    vertical-align: top;
+}
+.sf_table th{
+    background: #5D93CE !important;
+    vertical-align: middle !important;
+    text-align: center;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+.pagination{
+    font-size: 10px;
+}
+.autosum th{
+    background: #D9DBDB !important;
+    border-top: 2px solid #999999;
+}

@@ -1,0 +1,267 @@
+{% extends '::base.html.twig' %}
+{% block title %}
+    {% trans from "abonent" %}title_abonent{% endtrans %} - {% trans from "address" %}a_name{% endtrans %}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(edit_form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(edit_form) }}
+    <script src="{{ asset('js/zk_tab.js') }}"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('*[data-toggle="tabajax"]').click(function(e) {
+            e.preventDefault();
+            var loadurl = $(this).attr('href');
+            var targ = $(this).attr('data-target');
+	    if ($(targ).html() == '') {
+	        $.get(loadurl, function(data) {
+                   $(targ).html(data);
+                });
+	    }
+            $(this).tab('show');
+        });
+	
+      $('#crm_abonentbundle_abonentph_appl_note').keyup(function() {
+       
+	$('.save_note').show().css('visibility', 'visible');
+      });
+      
+      $('.save_note').click(function(event) {
+	event.preventDefault();
+	var id = {{ entity.appl.id }};
+	var val = $('#crm_abonentbundle_abonentph_appl_note').val();
+	var field = 'setNote';
+	
+	updateAppl(id,val,field)
+      });
+      
+      // preventDefault() сделано потому что при клике на label
+      //происходит два запроса
+      $('.appl_action').click(function(event) {
+	
+	
+	var check = $(this).find('input');
+	var id = {{ entity.appl.id }};
+	var val = check.is(':checked') ? 1 : 0;
+	var field = $(this).attr('id');
+	
+	//если нажал не на чекбокс
+	if( !$(event.target).is(":checkbox")){
+	  event.preventDefault();
+	  val = check.is(':checked') ? 0 : 1;
+	  check.prop('checked', !check.is(':checked'));
+	}
+	
+	
+	
+	updateAppl(id,val,field);
+      });
+      
+//      $('.label').mouseover(function() {
+//	$(this).addClass('lable-vd');
+//      });
+//      $('.label').mouseleave(function() {
+//	$(this).removeClass('lable-vd');
+//      });
+    });
+    
+    function updateAppl(id,val,field) {
+      $('#alert').html('');
+      $.get(Routing.generate("abonentph_appl_update", { 'id':id,
+			       'field':field, 'val':val } ),
+        function(data){
+	  if(data.success)  $('#alert').show().css('visibility', 'visible').addClass('alert-success').append($('<p>Зміни збережено</p>'));
+	  else $('#alert').show().css('visibility', 'visible').addClass('alert-error').append('<p>Виникла помилка!</p>');
+	}
+      );
+    }
+    </script>
+{% endblock %}
+
+{% block sf_content %}
+{% set status_balance = entity.balance <= 0 ? 'important':'success'%}
+<div class="row zk-form">
+  <div class="spanMain">
+    {{ form_errors(edit_form) }}
+    {{ form_start(edit_form) }}
+    <legend>
+      {{ entity.name }} :: {{ entity.numDogovor }}
+    </legend>
+    <div class="tabbable" style="width:95%;">
+      <ul class="nav nav-tabs" id="zkTab">
+        <li><a id="zkTab1" href="#tab1" data-toggle="tab">
+          {% trans with {} from 'abonent' %}a.title{% endtrans %}
+        </a></li>
+        <li><a id="zkTab2" href="#tab2" data-toggle="tab">
+          {% trans with {} from 'abonent' %}a.contacts{% endtrans %}
+        </a></li>
+	<li><a id="zkTab3" href="{{ path('abonent_calls',{'abonent_id':entity.abonent.id}) }}" data-toggle="tabajax" data-target="#tab3">
+          {% trans with {} from 'abonent' %}a.calls{% endtrans %}
+        </a></li>
+	<li><a id="zkTab4" href="#tab4" data-toggle="tab">
+          {% trans with {} from 'abonent' %}a.appl{% endtrans %}
+        </a></li>
+      </ul>
+    </div>
+        
+    <div class="tab-content">
+      <div class="tab-pane" id="tab1">
+        <div class="row">
+          <div class="span6">
+            <div class="row">
+              <div class="span1">{% trans from "abonent" %}a_address{% endtrans %}</div>
+              <div class="span5"><span class="label lable-vd">{{ entity.address }}</span></div>
+            </div>
+            <div class="row">
+              <div class="span1">{% trans from "abonent" %}a.phone{% endtrans %}</div>
+              {% if entity.contactInfo.phoneMob%}
+              <div class="span2">{% trans from "abonent" %}aph_phoneMob{% endtrans %} 
+                <span class="label">{{ entity.contactInfo.phoneMob }}</span>
+	      </div>
+              {% endif %}
+              {% if entity.contactInfo.phoneDom%}
+              <div class="span2">{% trans from "abonent" %}aph_phoneDom{% endtrans %}
+                <span class="label">{{ entity.contactInfo.phoneDom }}</span>
+	      </div>
+              {% endif %}
+              {% if entity.phoneCont%}
+              <div class="span2">{% trans from "abonent" %}aph_phoneCont{% endtrans %}
+                <span class="label">{{ entity.phoneCont }}</span>
+	      </div>
+              {% endif %}
+            </div>
+            {% if entity.email%}
+            <div class="row">
+              <div class="span1">{% trans from "abonent" %}aph_email{% endtrans %}</div>
+              <div class="span5"><span class="label">{{ entity.email }}</span></div>
+            </div>
+	    {% endif %}
+	    <!-- Послуга -->
+	    <hr>
+	    <div class="row">
+	      <div class="span6">
+		<span class="label label-info lable-vd">{% trans from "abonent" %}s.service{% endtrans %}</span>
+	      </div>
+	      <div class="span2">{% trans from "abonent" %}s.tarif{% endtrans %}</div>
+              <div class="span2">
+		<span class="label label-success">{{ entity.service.name }}</span>
+	      </div>
+            </div>
+	    <div class="row">
+	      <div class="span2">{% trans from "abonent" %}s.status{% endtrans %}
+                <span class="label label-success lable-vd"></span>
+	      </div>
+	      <div class="span2">{% trans from "abonent" %}s.act_days{% endtrans %}
+                <span class="label label-success lable-vd"></span>
+	      </div>
+            </div>
+	    <div class="row">
+	      <div class="span2">{% trans from "abonent" %}s.channel_pack{% endtrans %}</div>
+              <div class="span2">
+		<span class="label label-success">{{ entity.service.packName }}</span>
+	      </div>
+            </div>
+          </div>
+          <div class="span5">
+            <div class="row">
+              <div class="span2">{% trans from "abonent" %}a_balance{% endtrans %} грн.
+                <span class="label label-{{status_balance}} lable-vd">{{ entity.balance }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- -->
+      <div class="tab-pane" id="tab2">
+        <div class="row">
+	  <div class="span3">{{ form_row(edit_form.firstName) }}</div>
+	  <div class="span3">{{ form_row(edit_form.surname) }}</div>
+	  <div class="span3">{{ form_row(edit_form.fatherName) }}</div>
+        </div>
+        <div class="row">
+	  <div class="span3">{{ form_row(edit_form.contactInfo.phoneMob) }}</div>
+	    <div class="span3">{{ form_row(edit_form.contactInfo.phoneDom) }}</div>
+	      <div class="span3">{{ form_row(edit_form.phoneCont) }}</div>
+        </div>
+        <div class="row">
+          <div class="span3">{{ form_row(edit_form.email) }}</div>
+	  <div class="span3">{{ form_row(edit_form.contactInfo.birthDay) }}</div>
+          <div class="span2 check_box_input">{{ form_row(edit_form.contactInfo.notifyPhone) }}</div>
+	  <div class="span1 check_box_input">{{ form_row(edit_form.contactInfo.rent) }}</div>
+        </div>
+	<hr>
+        <div class="row">
+          <div class="span1">{{ form_row(edit_form.contactInfo.paspSer) }}</div>
+	  <div class="span1">{{ form_row(edit_form.contactInfo.paspNum) }}</div>
+	  <div class="span2">{{ form_row(edit_form.contactInfo.paspIpn) }}</div>
+	  <div class="span3">{{ form_row(edit_form.contactInfo.paspWhomChoice) }}</div>
+	  <div class="span3">{{ form_row(edit_form.contactInfo.paspWhom) }}</div>
+	</div>
+	<hr>
+        <div class="row">
+	  <div class="span2">{{ form_row(edit_form.contactInfo.profile) }}</div>
+        </div>
+        <div class="span3">
+	  <button class="btn btn-primary" type="submit">{% trans from "address" %}save{% endtrans %}</button>
+	</div>
+      </div>
+      <div class="tab-pane" id="tab2"></div>
+      <div class="tab-pane" id="tab3"></div>
+      <div class="tab-pane" id="tab4">
+        <div class="row">
+	  <div class="span5">
+	    <div class="row">
+	      <div class="span3 appl_action" id="setDogovorMont">{{ form_row(edit_form.appl.dogovor_mont) }}</div>
+	      <div class="span3 appl_action" id="setPaspMont">{{ form_row(edit_form.appl.pasp_mont) }}</div>
+	      <div class="span3 appl_action" id="setNetCard">{{ form_row(edit_form.appl.net_card) }}</div>
+	    </div>
+	    <hr>
+	    <div class="row">
+	      <div class="span5">{{ form_row(edit_form.appl.note) }}</div>
+	      {% if entity.appl.log%}
+		<div class="span5 ">
+		  <a href="javascript:void(0)" onclick="$('.log_prim').toggle()">Зміни в примітках!</a>
+		</div>
+		<div class="span5 log_prim hide">
+		  {{ entity.appl.log }}
+		</div>
+	      {% endif %}
+	    </div>
+	    <div class="row hidden save_note">
+	      <div class="span1">
+		<a id="save_note"  href="#" class="btn btn-success">
+		  {% trans from "abonent" %}appl.save_note{% endtrans %}
+                </a>
+	      </div>
+	    </div>
+	  </div>
+	  <!-- APPL -->
+	  <div class="span5">
+	    <div class="row">
+	      <div class="span2">{% trans from "abonent" %}appl.dateCall{% endtrans %}</div>
+	      <div class="span3"><span class="label label-info">{{ entity.appl.dateCall | date('Y-m-d H:i') }}</span></div>
+	      <div class="span2">{% trans from "abonent" %}appl.dateConn{% endtrans %}</div>
+	      <div class="span3"><span class="label">{{ entity.appl.dateConn | date('Y-m-d H:i') ?:'-' }}</span></div>
+	      <div class="span2">{% trans from "abonent" %}appl.dateRealConn{% endtrans %}</div>
+	      <div class="span3"><span class="label label-success">{{ entity.appl.dateConn | date('Y-m-d H:i') ?:'-' }}</span></div>
+	      <div class="span2">{% trans from "abonent" %}appl.manager{% endtrans %}</div>
+	      <div class="span3"><span class="label">{{ entity.appl.user ?:'-' }}</span></div>
+	      <div class="span2">{% trans from "abonent" %}appl.rival{% endtrans %}</div>
+	      <div class="span3"><span class="label">{{ entity.appl.rival  }}</span></div>
+	      <div class="span2">{% trans from "abonent" %}appl.reason{% endtrans %}</div>
+	      <div class="span3"><span class="label">{{ entity.appl.reason  }}</span></div>
+	      <div class="span2">{% trans from "abonent" %}appl.howFind{% endtrans %}</div>
+	      <div class="span3"><span class="label">{{ entity.appl.howFind  }}</span></div>
+	    </div>
+	  </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:none;">{{ form_rest(edit_form) }}</div>
+    {{ form_end(edit_form) }}
+  </div>
+</div>
+{% endblock %}
